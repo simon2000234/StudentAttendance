@@ -14,6 +14,12 @@ public class Teacher
     private String name;
     private String username;
     private String password;
+    private int id;
+
+    public int getId()
+    {
+        return id;
+    }
 
     public String getName()
     {

@@ -15,6 +15,14 @@ public class Attendance
 {
     private boolean isAttending;
     private String date; 
+    private String dayOfWeek;
+
+    public Attendance(boolean isAttending, String date, String dayOfWeek)
+    {
+        this.isAttending = isAttending;
+        this.date = date;
+        this.dayOfWeek = dayOfWeek;
+    }
 
     public boolean isIsAttending()
     {
@@ -36,6 +44,12 @@ public class Attendance
         this.date = date;
     }
 
+    public String getDayOfWeek()
+    {
+        return dayOfWeek;
+    }
+
+    
 
     
     

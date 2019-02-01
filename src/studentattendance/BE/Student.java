@@ -17,6 +17,23 @@ public class Student
     private String username;
     private String password;
     private ArrayList<Attendance> attendance;
+    private int id;
+
+    public Student(String name, String username, String password, ArrayList<Attendance> attendance, int id)
+    {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.attendance = attendance;
+        this.id = id;
+    }
+    
+    
+
+    public int getId()
+    {
+        return id;
+    }
 
     public String getName()
     {
