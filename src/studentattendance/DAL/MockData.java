@@ -59,8 +59,8 @@ public class MockData
         attendanceList.add(attendanceday4);
         attendanceList.add(attendanceday5);
         
-        Student Jake = new Student("Jake Paul", "Suicide@mail.com", "1234", attendanceList, 2);
+        Student John = new Student("Jake Paul", "Suicide@mail.com", "1234", attendanceList, 2);
         
-        return Jake;
+        return John;
     }
 }
