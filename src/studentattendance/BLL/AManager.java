@@ -6,26 +6,21 @@
 package studentattendance.BLL;
 
 import java.util.ArrayList;
+import studentattendance.BE.Person;
 import studentattendance.BE.Student;
 import studentattendance.DAL.MockData;
+import studentattendance.DAL.PersonDAO;
 /**
  *
  * @author Richart hansen
  */
 public class AManager
 {
-    private MockData mockData;
-    public ArrayList<Student> getAllStudents()
-    {
-        ArrayList<Student> Stud = new ArrayList();
-        
-        Stud.add(mockData.createStudentJohn());
-        Stud.add(mockData.createStudentAlex());
-        Stud.add(mockData.createStudentIna());
-        Stud.add(mockData.createStudentJake());
-        Stud.add(mockData.createStudentKarl());
-        
-        return Stud;
-    }
+    private PersonDAO personDAO = new PersonDAO();
+    
+     public ArrayList<Person> getAllPersons()
+     {
+         return personDAO.getAllPersons();
+     }
     
 }

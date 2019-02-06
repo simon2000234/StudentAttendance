@@ -40,7 +40,7 @@ public class MockData
         attendanceList.add(attendanceday4);
         attendanceList.add(attendanceday5);
         
-        Student John = new Student("John Hitler", "john123@mail.com", "1234", attendanceList, 1);
+        Student John = new Student("John Hitler", "john123@mail.com", "1234", 1, attendanceList);
         
         return John;
     }
@@ -60,7 +60,7 @@ public class MockData
         attendanceList.add(attendanceday4);
         attendanceList.add(attendanceday5);
         
-        Student John = new Student("Jake Paul", "Suicide@mail.com", "1234", attendanceList, 2);
+        Student John = new Student("Jake Paul", "Suicide@mail.com", "1234", 2, attendanceList);
         
         return John;
     }
@@ -80,7 +80,7 @@ public class MockData
         attendanceList.add(attendanceday4);
         attendanceList.add(attendanceday5);
         
-        Student Karl = new Student("Karl Timsen", "DeKing@mail.com", "1234", attendanceList, 3);
+        Student Karl = new Student("Karl Timsen", "DeKing@mail.com", "1234", 3,  attendanceList);
         
         return Karl;
     }
@@ -100,7 +100,7 @@ public class MockData
         attendanceList.add(attendanceday4);
         attendanceList.add(attendanceday5);
         
-        Student Ina = new Student("Ina Olsen", "Ina@mail.com", "1234", attendanceList, 4);
+        Student Ina = new Student("Ina Olsen", "Ina@mail.com", "1234", 4, attendanceList);
         
         return Ina;
     }
@@ -120,7 +120,7 @@ public class MockData
         attendanceList.add(attendanceday4);
         attendanceList.add(attendanceday5);
         
-        Student Alex = new Student("Alex Click", "Click@mail.com", "1234", attendanceList, 5);
+        Student Alex = new Student("Alex Click", "Click@mail.com", "1234", 5, attendanceList);
         
         return Alex;
     }
