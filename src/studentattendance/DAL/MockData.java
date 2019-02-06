@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import studentattendance.BE.Attendance;
 import studentattendance.BE.Student;
+import studentattendance.BE.Teacher;
 
 /**
  *
@@ -59,9 +60,9 @@ public class MockData
         attendanceList.add(attendanceday4);
         attendanceList.add(attendanceday5);
         
-        Student Jake = new Student("Jake Paul", "Suicide@mail.com", "1234", attendanceList, 2);
+        Student John = new Student("Jake Paul", "Suicide@mail.com", "1234", attendanceList, 2);
         
-        return Jake;
+        return John;
     }
     
     public Student createStudentKarl()
@@ -122,5 +123,11 @@ public class MockData
         Student Alex = new Student("Alex Click", "Click@mail.com", "1234", attendanceList, 5);
         
         return Alex;
+    }
+    
+    public Teacher createTracherJohnKeating()
+    {
+        Teacher John = new Teacher("John Keating", "Captain@mail.com", "1234", 6);
+        return John;
     }
 }
