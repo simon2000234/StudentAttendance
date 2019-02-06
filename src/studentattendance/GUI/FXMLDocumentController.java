@@ -9,9 +9,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import studentattendance.StudentAttendance;
 
 /**
  *
@@ -35,6 +37,8 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleOkBtn(ActionEvent event)
     {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(StudentAttendance.class.getResource("GUi/RootLayer.fxml"));
     }
 
     @FXML
