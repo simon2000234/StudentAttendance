@@ -16,12 +16,7 @@ public class Tester
 {
     public static void main(String[] args)
     {
-        AManager am = new AManager();
-        ArrayList<Person> list = am.getAllPersons();
-        for (Person person : list)
-        {
-            System.out.println(person.getUsername());
-            System.out.println(person.getPassword());
-        }
+        
     }
+    
 }
