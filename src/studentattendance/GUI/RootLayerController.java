@@ -7,6 +7,7 @@ package studentattendance.GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
@@ -37,5 +38,11 @@ public class RootLayerController implements Initializable
     {
         // TODO
     }    
+
+    @FXML
+    private void close(ActionEvent event)
+    {
+        System.exit(0);
+    }
     
 }
