@@ -14,8 +14,7 @@ import studentattendance.BE.Person;
  */
 public class PersonDAO
 {
-    
-    
+
     public ArrayList<Person> getAllPersons()
     {
         MockData md = new MockData();
@@ -26,7 +25,8 @@ public class PersonDAO
         persons.add(md.createStudentJohn());
         persons.add(md.createStudentKarl());
         persons.add(md.createTracherJohnKeating());
-        
+
         return persons;
     }
+    
 }
