@@ -9,41 +9,12 @@ package studentattendance.BE;
  *
  * @author Melchertsen
  */
-public class Teacher
+public class Teacher extends Person
 {
-    private String name;
-    private String username;
-    private String password;
-    private int id;
 
     public Teacher(String name, String username, String password, int id)
     {
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.id = id;
-    }
-
-    
-    
-    public int getId()
-    {
-        return id;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public String getUsername()
-    {
-        return username;
-    }
-
-    public String getPassword()
-    {
-        return password;
+        super(name, username, password, id);
     }
     
     

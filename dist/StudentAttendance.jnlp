@@ -8,7 +8,13 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="StudentAttendance.jar" size="9518" download="eager" />
+=======
+    <jar href="StudentAttendance.jar" size="9247" download="eager" />
+
+    <jar href="StudentAttendance.jar" size="8985" download="eager" />
+>>>>>>> ad4b789fd8a0baf12c270f9988f793777c0752cb
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="StudentAttendance" >
     <param name="requiredFXVersion" value="8.0+"/>

@@ -11,44 +11,18 @@ import java.util.ArrayList;
  *
  * @author Melchertsen
  */
-public class Student
+public class Student extends Person
 {
-    private String name;
-    private String username;
-    private String password;
     private ArrayList<Attendance> attendance;
-    private int id;
 
-    public Student(String name, String username, String password, ArrayList<Attendance> attendance, int id)
+
+    public Student(String name, String username, String password, int id, ArrayList<Attendance> attendance)
     {
-        this.name = name;
-        this.username = username;
-        this.password = password;
+        super(name, username, password, id);
         this.attendance = attendance;
-        this.id = id;
-    }
-    
-    
-
-    public int getId()
-    {
-        return id;
+        
     }
 
-    public String getName()
-    {
-        return name;
-    }
-
-    public String getUsername()
-    {
-        return username;
-    }
-
-    public String getPassword()
-    {
-        return password;
-    }
 
     public ArrayList<Attendance> getAttendance()
     {
