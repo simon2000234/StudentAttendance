@@ -16,10 +16,11 @@ import studentattendance.DAL.PersonDAO;
  */
 public class AManager
 {
-    private PersonDAO personDAO = new PersonDAO();
+    private PersonDAO personDAO;
     
      public ArrayList<Person> getAllPersons()
      {
+         personDAO = new PersonDAO();
          return personDAO.getAllPersons();
      }
     
