@@ -67,6 +67,7 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleCancelBtn(ActionEvent event)
     {
+        //Closes the aplication
         Stage current = (Stage) txtUsername.getScene().getWindow();
         current.close();
     }

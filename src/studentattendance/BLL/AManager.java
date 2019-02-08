@@ -7,8 +7,6 @@ package studentattendance.BLL;
 
 import java.util.ArrayList;
 import studentattendance.BE.Person;
-import studentattendance.BE.Student;
-import studentattendance.DAL.MockData;
 import studentattendance.DAL.PersonDAO;
 /**
  *
@@ -17,10 +15,16 @@ import studentattendance.DAL.PersonDAO;
 public class AManager
 {
     private PersonDAO personDAO;
+
+    public AManager()
+    {
+        personDAO = new PersonDAO();
+    }
+    
+    
     
      public ArrayList<Person> getAllPersons()
      {
-         personDAO = new PersonDAO();
          return personDAO.getAllPersons();
      }
     
