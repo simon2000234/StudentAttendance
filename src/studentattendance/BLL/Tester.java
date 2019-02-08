@@ -6,7 +6,6 @@
 package studentattendance.BLL;
 
 import java.util.ArrayList;
-import static javafx.application.Application.launch;
 import studentattendance.BE.Person;
 
 /**

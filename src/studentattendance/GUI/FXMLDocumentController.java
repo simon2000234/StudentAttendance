@@ -26,49 +26,59 @@ import studentattendance.StudentAttendance;
  */
 public class FXMLDocumentController implements Initializable
 {
-    
+
     @FXML
     private TextField txtUsername;
     @FXML
     private TextField txtPassword;
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
         // TODO
-    }    
+    }
 
     @FXML
     private void handleOkBtn(ActionEvent event)
     {
-        try
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        if (username.equals("user") && password.equals("pass"))
         {
-            Parent root;
-            FXMLLoader loader = new FXMLLoader();//(getClass().getClassLoader().getResource("GUI/RootLayer.fxml"));
-            loader.setLocation(StudentAttendance.class.getResource("GUI/RootLayer.fxml"));
-            root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Student");
-            stage.setScene(new Scene(root, 600, 450));
-            stage.show();
-            
-            Stage current = (Stage) txtUsername.getScene().getWindow();
-            current.close();
-        
+            try
+            {
+                Parent root;
+                FXMLLoader loader = new FXMLLoader();//(getClass().getClassLoader().getResource("GUI/RootLayer.fxml"));
+                loader.setLocation(StudentAttendance.class.getResource("GUI/RootLayer.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Student");
+                stage.setScene(new Scene(root, 600, 450));
+                stage.show();
+
+                Stage current = (Stage) txtUsername.getScene().getWindow();
+
+                current.close();
+
 //        FXMLLoader loader = new FXMLLoader();
 //        loader.setLocation(StudentAttendance.class.getResource("GUI/RootLayer.fxml"));
-        } catch (IOException ex)
+            } catch (IOException ex)
+            {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else
         {
-            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Wrong Password");
         }
+
     }
 
     @FXML
     private void handleCancelBtn(ActionEvent event)
     {
+        //Closes the aplication
         Stage current = (Stage) txtUsername.getScene().getWindow();
         current.close();
     }
-    
+
 }
