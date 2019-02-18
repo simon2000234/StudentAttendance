@@ -32,7 +32,7 @@ public class AManager
         return personDAO.getAllPersons();
     }
 
-    public void addAtendance(Student student, boolean isPressent)
+    public Attendance addAtendance(Student student, boolean isPressent)
     {
         String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
         Calendar c = Calendar.getInstance();
@@ -71,7 +71,9 @@ public class AManager
         {
             dayOfTheWeek = "Something went wrong";
         }
-        student.getAttendance().add(new Attendance(isPressent, timeStamp, dayOfTheWeek));
+        Attendance attendance = new Attendance(isPressent, timeStamp, dayOfTheWeek);
+        student.getAttendance().add(attendance);
+        return attendance;
     }
 
 }

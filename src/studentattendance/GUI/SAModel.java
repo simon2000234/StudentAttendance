@@ -5,6 +5,10 @@
  */
 package studentattendance.GUI;
 
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import studentattendance.BE.Attendance;
 import studentattendance.BE.Person;
 import studentattendance.BE.Student;
 import studentattendance.BLL.AManager;
@@ -19,10 +23,18 @@ public class SAModel
     private AManager AM;
 
     private Person currentUser;
+    
+    private ObservableList<Attendance> attendance;
 
     public SAModel()
     {
         AM = new AManager();
+        this.attendance = FXCollections.observableArrayList();
+    }
+
+    public ObservableList<Attendance> getOBSAttendance()
+    {
+        return attendance;
     }
 
     /**
@@ -45,9 +57,9 @@ public class SAModel
         this.currentUser = currentUser;
     }
 
-    public void addAtendance(Student student, boolean isPressent)
+    public Attendance addAtendance(Student student, boolean isPressent)
     {
-        AM.addAtendance(student, isPressent);
+        return AM.addAtendance(student, isPressent);
     }
 
 }

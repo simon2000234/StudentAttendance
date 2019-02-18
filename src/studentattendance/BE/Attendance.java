@@ -52,7 +52,7 @@ public class Attendance
     @Override
     public String toString()
     {
-        return "Attendance{" + "isAttending=" + isAttending + ", date=" + date + ", dayOfWeek=" + dayOfWeek + '}';
+        return "" + dayOfWeek + " " + date + " Attendance=" + isAttending;
     }
 
     
