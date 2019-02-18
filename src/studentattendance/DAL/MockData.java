@@ -32,7 +32,7 @@ public class MockData
         attendanceList.add(attendanceday3);
         attendanceList.add(attendanceday4);
         attendanceList.add(attendanceday5);
-
+        
         Student John = new Student("John Hitler", "john123@mail.com", "1234", 1, attendanceList);
 
         return John;
