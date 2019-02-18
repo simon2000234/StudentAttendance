@@ -25,6 +25,8 @@ public class SAModel
     private Person currentUser;
     
     private ObservableList<Attendance> attendance;
+    
+    private Attendance attendanceEdit;
 
     public SAModel()
     {
@@ -62,4 +64,15 @@ public class SAModel
         return AM.addAtendance(student, isPressent);
     }
 
+    public Attendance getAttendanceEdit()
+    {
+        return attendanceEdit;
+    }
+
+    public void setAttendanceEdit(Attendance attendanceEdit)
+    {
+        this.attendanceEdit = attendanceEdit;
+    }
+
+    
 }
