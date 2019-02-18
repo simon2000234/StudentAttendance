@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studentattendance.GUI.RootLayerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" stylesheets="@OriginalTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studentattendance.GUI.RootLayerController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -34,7 +34,7 @@
       </MenuBar>
    </top>
    <left>
-      <AnchorPane prefHeight="375.0" prefWidth="226.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="365.0" prefWidth="278.0" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="21.0" layoutY="36.0" text="Logged in as:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                <font>
@@ -48,13 +48,13 @@
             </Label>
             <ImageView fitHeight="159.0" fitWidth="209.0" layoutX="-8.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
           <Button fx:id="btnPresent" layoutX="14.0" layoutY="199.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsPresent" prefHeight="25.0" text="Present" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="200.0" />
-            <Button fx:id="btnAbsent" layoutX="77.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsAbsent" prefHeight="25.0" text="Absent" />
-            <Button fx:id="btnEdit" layoutX="145.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="25.0" text="Edit" />
+            <Button fx:id="btnAbsent" layoutX="102.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsAbsent" prefHeight="25.0" text="Absent" />
+            <Button fx:id="btnEdit" layoutX="186.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="27.0" prefWidth="81.0" text="Edit" />
             <Label fx:id="lblAttendance" layoutX="37.0" layoutY="270.0" prefHeight="32.0" prefWidth="185.0" text="Label" />
          </children>
       </AnchorPane>
    </left>
    <right>
-      <ListView fx:id="lstAttendance" prefHeight="375.0" prefWidth="395.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="lstAttendance" prefHeight="375.0" prefWidth="395.0" styleClass="column-header-background" stylesheets="@OriginalTheme.css" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>
