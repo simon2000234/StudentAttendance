@@ -5,19 +5,27 @@
  */
 package studentattendance.GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import studentattendance.BE.Attendance;
 import studentattendance.BE.Student;
+import studentattendance.StudentAttendance;
 
 /**
  * FXML Controller class
@@ -80,8 +88,8 @@ public class RootLayerController implements Initializable
         model.getOBSAttendance().add(model.addAtendance(student, false));
         caluclateAttendance(student);
     }
-    
-    private void caluclateAttendance(Student student)
+
+    public void caluclateAttendance(Student student)
     {
         ArrayList<Attendance> attendanceList = student.getAttendance();
         double total = attendanceList.size();
@@ -90,12 +98,45 @@ public class RootLayerController implements Initializable
         {
             if (attendance.isIsAttending() == false)
             {
-                notHere ++;
+                notHere++;
             }
         }
-        double absence = (notHere/total)*100;
+        double absence = (notHere / total) * 100;
         lblAttendance.setText("Absence = " + absence + "%");
-        
+
+    }
+
+    @FXML
+    private void handleEdit(ActionEvent event)
+    {
+        if (lstAttendance.getSelectionModel().getSelectedItem() == null)
+        {
+            System.out.println("Please sellect a day to edit");
+        } else
+        {
+            model.setAttendanceEdit(lstAttendance.getSelectionModel().getSelectedItem());
+            try
+            {
+                Parent root;
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(StudentAttendance.class.getResource("GUI/EditAttendance.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Edit Attendance");
+                stage.setScene(new Scene(root, 500, 200));
+                stage.show();
+                
+                EditAttendanceController eaController = loader.getController();
+                eaController.setMsmodel(model);
+                eaController.connectController(this);
+                
+                
+            } catch (IOException ex)
+            {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }
 
 }
