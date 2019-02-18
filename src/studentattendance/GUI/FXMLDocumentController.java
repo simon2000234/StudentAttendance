@@ -56,7 +56,7 @@ public class FXMLDocumentController implements Initializable
             try
             {
                 Parent root;
-                FXMLLoader loader = new FXMLLoader();//(getClass().getClassLoader().getResource("GUI/RootLayer.fxml"));
+                FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(StudentAttendance.class.getResource("GUI/RootLayer.fxml"));
                 root = loader.load();
                 Stage stage = new Stage();
