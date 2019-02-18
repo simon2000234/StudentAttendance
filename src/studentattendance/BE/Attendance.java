@@ -49,6 +49,12 @@ public class Attendance
         return dayOfWeek;
     }
 
+    @Override
+    public String toString()
+    {
+        return "" + dayOfWeek + " " + date + " Attendance=" + isAttending;
+    }
+
     
 
     
