@@ -21,11 +21,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-dist/StudentAttendance.html
-dist/StudentAttendance.html
-nbproject/private/private.properties
+dist/
 build/built-jar.properties
-build/built-jar.properties
-dist/StudentAttendance.html
-dist/StudentAttendance.jnlp
-dist/StudentAttendance.html
+*.properties

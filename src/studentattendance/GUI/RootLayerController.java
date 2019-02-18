@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -30,14 +31,25 @@ public class RootLayerController implements Initializable
     @FXML
     private PieChart chartPieChart;
 
+    private SAModel model;
+    @FXML
+    private Label lblName;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
-    }    
+    }
+
+    public void setMsmodel(SAModel model)
+    {
+        this.model = model;
+        lblName.setText(model.getCurrentUser().getName());
+
+    }
+ 
 
     @FXML
     private void close(ActionEvent event)
