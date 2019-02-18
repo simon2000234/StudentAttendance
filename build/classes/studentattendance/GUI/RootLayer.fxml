@@ -47,8 +47,8 @@
                </font>
             </Label>
             <ImageView fitHeight="159.0" fitWidth="209.0" layoutX="-8.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
-          <Button fx:id="btnPresent" layoutX="14.0" layoutY="199.0" minWidth="60.0" mnemonicParsing="false" prefHeight="25.0" text="Present" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="200.0" />
-            <Button fx:id="btnAbsent" layoutX="77.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" prefHeight="25.0" text="Absent" />
+          <Button fx:id="btnPresent" layoutX="14.0" layoutY="199.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsPresent" prefHeight="25.0" text="Present" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="200.0" />
+            <Button fx:id="btnAbsent" layoutX="77.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsAbsent" prefHeight="25.0" text="Absent" />
             <Button fx:id="btnEdit" layoutX="145.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" prefHeight="25.0" text="Edit" />
          </children>
       </AnchorPane>

@@ -6,6 +6,7 @@
 package studentattendance.GUI;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import studentattendance.BE.Attendance;
+import studentattendance.BE.Student;
 
 /**
  * FXML Controller class
@@ -32,6 +35,7 @@ public class RootLayerController implements Initializable
     private PieChart chartPieChart;
 
     private SAModel model;
+    private Student student;
     @FXML
     private Label lblName;
 
@@ -47,14 +51,27 @@ public class RootLayerController implements Initializable
     {
         this.model = model;
         lblName.setText(model.getCurrentUser().getName());
+        student = (Student) model.getCurrentUser();
 
     }
- 
 
     @FXML
     private void close(ActionEvent event)
     {
         System.exit(0);
     }
-    
+
+    @FXML
+    private void handleIsPresent(ActionEvent event)
+    {
+        model.addAtendance(student, true);
+
+    }
+
+    @FXML
+    private void handleIsAbsent(ActionEvent event)
+    {
+        model.addAtendance(student, false);
+    }
+
 }

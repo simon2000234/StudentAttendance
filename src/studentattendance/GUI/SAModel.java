@@ -6,6 +6,8 @@
 package studentattendance.GUI;
 
 import studentattendance.BE.Person;
+import studentattendance.BE.Student;
+import studentattendance.BLL.AManager;
 
 /**
  *
@@ -13,8 +15,15 @@ import studentattendance.BE.Person;
  */
 public class SAModel
 {
-    
+
+    private AManager AM;
+
     private Person currentUser;
+
+    public SAModel()
+    {
+        AM = new AManager();
+    }
 
     /**
      * Get the value of currentUser
@@ -34,6 +43,11 @@ public class SAModel
     public void setCurrentUser(Person currentUser)
     {
         this.currentUser = currentUser;
+    }
+
+    public void addAtendance(Student student, boolean isPressent)
+    {
+        AM.addAtendance(student, isPressent);
     }
 
 }
