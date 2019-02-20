@@ -13,8 +13,9 @@ import java.time.LocalDate;
  */
 public class Attendance
 {
+
     private boolean isAttending;
-    private String date; 
+    private String date;
     private String dayOfWeek;
 
     public Attendance(boolean isAttending, String date, String dayOfWeek)
@@ -32,6 +33,19 @@ public class Attendance
     public void setIsAttending(boolean isAttending)
     {
         this.isAttending = isAttending;
+    }
+
+    public String readableAttendance()
+    {
+        String status = "";
+        if (isAttending == true)
+        {
+            status = "Present";
+        } else
+        {
+            status = "Absent";
+        }
+        return status;
     }
 
     public String getDate()
@@ -52,12 +66,7 @@ public class Attendance
     @Override
     public String toString()
     {
-        return "" + dayOfWeek + " " + date + " Attendance=" + isAttending;
+        return "" + dayOfWeek + " " + date + " - " + readableAttendance();
     }
-
-    
-
-    
-    
 
 }

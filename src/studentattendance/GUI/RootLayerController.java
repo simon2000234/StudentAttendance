@@ -102,7 +102,8 @@ public class RootLayerController implements Initializable
             }
         }
         double absence = (notHere / total) * 100;
-        lblAttendance.setText("Absence = " + absence + "%");
+        String formatted = String.format("%.2f", absence);       
+        lblAttendance.setText("Absence = " + formatted + "%");
 
     }
 
