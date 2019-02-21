@@ -31,6 +31,7 @@ public class SAModel
     
     private Attendance attendanceEdit;
     private ObservableList<Student> students;
+    private Student selectedStudent;
 
     public SAModel()
     {
@@ -96,6 +97,16 @@ public class SAModel
     public void setStudents(ObservableList<Student> students)
     {
         this.students = students;
+    }
+
+    public Student getSelectedStudent()
+    {
+        return selectedStudent;
+    }
+
+    public void setSelectedStudent(Student selectedStudent)
+    {
+        this.selectedStudent = selectedStudent;
     }
     
 }

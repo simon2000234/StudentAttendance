@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="809.0" styleClass="background" stylesheets="@OriginalTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studentattendance.GUI.TeacherPageController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="474.0" prefWidth="809.0" styleClass="background" stylesheets="@OriginalTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studentattendance.GUI.TeacherPageController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -42,7 +42,7 @@
       </AnchorPane>
    </left>
    <right>
-      <TableView fx:id="tableAttendance" prefHeight="375.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableAttendance" onMouseClicked="#handleSelectStudent" prefHeight="375.0" prefWidth="260.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="columnStudentName" prefWidth="169.0" text="Student" />
           <TableColumn fx:id="columnAttendance" prefWidth="89.0" text="Absence %" />
@@ -53,7 +53,7 @@
       </TableView>
    </right>
    <center>
-      <BarChart prefHeight="375.0" prefWidth="161.0" BorderPane.alignment="CENTER">
+      <BarChart fx:id="barChart" prefHeight="375.0" prefWidth="161.0" BorderPane.alignment="CENTER">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

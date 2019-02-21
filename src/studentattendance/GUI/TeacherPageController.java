@@ -16,10 +16,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import studentattendance.BE.Attendance;
 import studentattendance.BE.Student;
@@ -49,6 +55,10 @@ public class TeacherPageController implements Initializable
     private int Onsdag;
     private int Torsdag;
     private int Fredag;
+    @FXML
+    private BarChart<?, ?> barChart;
+    @FXML
+    private BorderPane borderPane;
 
     /**
      * Initializes the controller class.
@@ -126,6 +136,41 @@ public class TeacherPageController implements Initializable
                 }
             }
             
+    }
+
+    @FXML
+    private void handleSelectStudent(MouseEvent event)
+    {
+        model.setSelectedStudent(tableAttendance.getSelectionModel().getSelectedItem());
+        borderPane.setCenter(buildBarChart());
+    }
+    
+     private BarChart buildBarChart()
+    {
+        absentDays(model.getSelectedStudent());
+        //Creating X and Y axis
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Student Absence");
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("# of days absent");
+
+        //Building BarChart data
+        barChart = new BarChart(xAxis, yAxis);
+
+        XYChart.Series dataset = new XYChart.Series();
+        dataset.setName("Overview of days most absent");
+
+        dataset.getData().add(new XYChart.Data("Mandag", Mandag));
+        dataset.getData().add(new XYChart.Data("Tirsdag", Tirsdag));
+        dataset.getData().add(new XYChart.Data("Onsdag", Onsdag));
+        dataset.getData().add(new XYChart.Data("Torsdag", Torsdag));
+        dataset.getData().add(new XYChart.Data("Fredag", Fredag));
+
+        //Add dataset to chart
+        barChart.getData().add(dataset);
+
+        return barChart;
+
     }
 
 }
