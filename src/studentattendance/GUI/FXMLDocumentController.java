@@ -69,16 +69,34 @@ public class FXMLDocumentController implements Initializable
                 
                 Stage current = (Stage) txtUsername.getScene().getWindow();
                 current.close();
-
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(StudentAttendance.class.getResource("GUI/RootLayer.fxml"));
+                
             } catch (IOException ex)
             {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (isTeacher())
         {
-            System.out.println("Teacher login is not yet supported");
+            try
+            {
+                Parent root;
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(StudentAttendance.class.getResource("GUI/TeacherPage.fxml"));
+                root = loader.load();
+                Stage stage = new Stage();
+                stage.setTitle("Teacher");
+                stage.setScene(new Scene(root));
+                stage.show();
+                
+                TeacherPageController tpController = loader.getController();
+                tpController.setMsmodel(model);
+                
+                Stage current = (Stage) txtUsername.getScene().getWindow();
+                current.close();
+
+            } catch (IOException ex)
+            {
+                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else
         {
             System.out.println("Wrong Password or Username");

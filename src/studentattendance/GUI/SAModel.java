@@ -27,11 +27,14 @@ public class SAModel
     private ObservableList<Attendance> attendance;
     
     private Attendance attendanceEdit;
+    private ObservableList<Student> students;
 
     public SAModel()
     {
         AM = new AManager();
         this.attendance = FXCollections.observableArrayList();
+        this.students = FXCollections.observableArrayList();
+        students.addAll(AM.getAllStudents());
     }
 
     public ObservableList<Attendance> getOBSAttendance()
@@ -74,5 +77,14 @@ public class SAModel
         this.attendanceEdit = attendanceEdit;
     }
 
+    public ObservableList<Student> getStudents()
+    {
+        return students;
+    }
+
+    public void setStudents(ObservableList<Student> students)
+    {
+        this.students = students;
+    }
     
 }

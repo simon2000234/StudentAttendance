@@ -14,12 +14,14 @@ import java.util.ArrayList;
 public class Student extends Person
 {
     private ArrayList<Attendance> attendance;
+    private double attendanceString;
 
 
     public Student(String name, String username, String password, int id, ArrayList<Attendance> attendance)
     {
         super(name, username, password, id);
         this.attendance = attendance;
+        this.attendanceString = caluclateAttendance();
         
     }
 
@@ -28,4 +30,30 @@ public class Student extends Person
     {
         return attendance;
     }
+    
+    public double caluclateAttendance()
+    {
+        ArrayList<Attendance> attendanceList = getAttendance();
+        double total = attendanceList.size();
+        double notHere = 0;
+        for (Attendance attendance : attendanceList)
+        {
+            if (attendance.isIsAttending() == false)
+            {
+                notHere++;
+            }
+        }
+        double absence = (notHere / total) * 100;
+        
+        return absence;
+
+    }
+
+    public double getAttendanceString()
+    {
+        return attendanceString;
+    }
+    
+    
+    
 }

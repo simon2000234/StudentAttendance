@@ -10,6 +10,10 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import studentattendance.BE.Student;
 import studentattendance.BE.Teacher;
 
 /**
@@ -24,6 +28,12 @@ public class TeacherPageController implements Initializable
     @FXML
     private Label lblTeacherName;
     private Teacher teacher;
+    @FXML
+    private TableView<Student> tableAttendance;
+    @FXML
+    private TableColumn<Student, String> columnStudentName;
+    @FXML
+    private TableColumn<Student, Double> columnAttendance;
 
     /**
      * Initializes the controller class.
@@ -31,7 +41,9 @@ public class TeacherPageController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        // TODO
+        columnStudentName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        columnAttendance.setCellValueFactory(new PropertyValueFactory<>("attendanceString"));
+        
     }
 
     public void setMsmodel(SAModel model)
@@ -39,6 +51,11 @@ public class TeacherPageController implements Initializable
         this.model = model;
         lblTeacherName.setText(model.getCurrentUser().getName());
         teacher = (Teacher) model.getCurrentUser();
+        tableAttendance.setItems(model.getStudents());
+//        for (Student student : model.getStudents())
+//        {
+//            System.out.println(""+student.);
+//        }
     }
     
 }
