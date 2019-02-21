@@ -49,7 +49,11 @@
             <ImageView fitHeight="159.0" fitWidth="209.0" layoutX="-8.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
           <Button fx:id="btnPresent" layoutX="14.0" layoutY="199.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsPresent" prefHeight="25.0" text="Present" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="200.0" />
             <Button fx:id="btnAbsent" layoutX="102.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsAbsent" prefHeight="25.0" text="Absent" />
+<<<<<<< HEAD
             <Button fx:id="btnEdit" layoutX="186.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="81.0" text="Edit" />
+=======
+            <Button fx:id="btnEdit" layoutX="186.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="27.0" prefWidth="81.0" text="Edit" />
+>>>>>>> e61bfe43c60a133a42d5aeb7383e7bf4a80176ba
             <Label fx:id="lblAttendance" layoutX="37.0" layoutY="270.0" prefHeight="32.0" prefWidth="185.0" text="Label" />
          </children>
       </AnchorPane>

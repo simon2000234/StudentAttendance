@@ -72,7 +72,27 @@ public class RootLayerController implements Initializable
     @FXML
     private void close(ActionEvent event)
     {
-        System.exit(0);
+        try
+        {
+            Parent root;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(StudentAttendance.class.getResource("GUI/FXMLDocument.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Log in");
+            stage.setScene(new Scene(root));
+            stage.show();
+            
+//            RootLayerController rlController = loader.getController();
+//            rlController.setMsmodel(model);
+            
+            Stage current = (Stage) lblName.getScene().getWindow();
+            current.close();
+//        System.exit(0);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(RootLayerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -102,7 +122,8 @@ public class RootLayerController implements Initializable
             }
         }
         double absence = (notHere / total) * 100;
-        lblAttendance.setText("Absence = " + absence + "%");
+        String formatted = String.format("%.2f", absence);       
+        lblAttendance.setText("Absence = " + formatted + "%");
 
     }
 
