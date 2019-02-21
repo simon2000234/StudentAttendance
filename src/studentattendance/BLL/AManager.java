@@ -68,10 +68,9 @@ public class AManager
         student.getAttendance().add(attendance);
         return attendance;
     }
-
+    
     public ArrayList<Student> getAllStudents()
     {
         return personDAO.getAllStudents();
     }
-
 }
