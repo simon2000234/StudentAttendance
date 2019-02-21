@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -19,16 +18,6 @@
           <Menu mnemonicParsing="false" text="Account">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#close" text="Logout" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
@@ -47,7 +36,6 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="159.0" fitWidth="209.0" layoutX="-8.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
           <Button fx:id="btnPresent" layoutX="14.0" layoutY="199.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsPresent" prefHeight="25.0" text="Present" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="200.0" />
             <Button fx:id="btnAbsent" layoutX="102.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleIsAbsent" prefHeight="25.0" text="Absent" />
             <Button fx:id="btnEdit" layoutX="186.0" layoutY="200.0" minWidth="60.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="27.0" prefWidth="81.0" text="Edit" />

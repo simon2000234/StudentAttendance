@@ -29,7 +29,7 @@ public class StudentAttendance extends Application
         stage.show();
     }
 
-    /**i
+    /**
      * @param args the command line arguments
      */
     public static void main(String[] args)

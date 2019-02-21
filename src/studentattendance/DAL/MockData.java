@@ -10,6 +10,7 @@ import java.util.List;
 import studentattendance.BE.Attendance;
 import studentattendance.BE.Student;
 import studentattendance.BE.Teacher;
+import studentattendance.BE.TeacherAlert;
 
 /**
  *
@@ -121,6 +122,11 @@ public class MockData
     public Teacher createTracherJohnKeating()
     {
         Teacher John = new Teacher("John Keating", "Captain@mail.com", "1234", 6);
+        John.getTeacherAlerts().add(new TeacherAlert(createStudentAlex(), 
+                new Attendance(true, "31-01-2019", "Torsdag"), 
+                new Attendance(false, "31-01-2019", "Torsdag")));
         return John;
     }
+    
+    
 }
