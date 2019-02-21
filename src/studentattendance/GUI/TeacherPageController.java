@@ -52,6 +52,9 @@ public class TeacherPageController implements Initializable
         lblTeacherName.setText(model.getCurrentUser().getName());
         teacher = (Teacher) model.getCurrentUser();
         tableAttendance.setItems(model.getStudents());
+        columnAttendance.setComparator(columnAttendance.getComparator().reversed());
+        tableAttendance.getSortOrder().add(columnAttendance);
+        
 //        for (Student student : model.getStudents())
 //        {
 //            System.out.println(""+student.);
