@@ -158,7 +158,7 @@ public class TeacherPageController implements Initializable
         barChart = new BarChart(xAxis, yAxis);
 
         XYChart.Series dataset = new XYChart.Series();
-        dataset.setName("Overview of days most absent");
+//        dataset.setName("Overview of days most absent");
 
         dataset.getData().add(new XYChart.Data("Mandag", Mandag));
         dataset.getData().add(new XYChart.Data("Tirsdag", Tirsdag));
