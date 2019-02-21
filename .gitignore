@@ -24,3 +24,5 @@ hs_err_pid*
 dist/
 build/built-jar.properties
 *.properties
+build/classes/studentattendance/GUI/TeacherPage.fxml
+build/classes/studentattendance/GUI/TeacherNotifications.fxml
