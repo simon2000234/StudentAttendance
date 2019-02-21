@@ -75,5 +75,5 @@ public class AManager
         student.getAttendance().add(attendance);
         return attendance;
     }
-
+     
 }
