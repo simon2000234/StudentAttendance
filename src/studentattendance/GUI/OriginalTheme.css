@@ -68,11 +68,21 @@ and open the template in the editor.
 }
 
 .table-view .column-header .label {
-    -fx-font-size: 20pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
+}
+
+.table-view .indexed-cell:even {
+    -fx-background-color: #555555;
+    -fx-text-fill: white;
+}
+
+.table-view .indexed-cell:odd {
+    -fx-background-color: #777777;
+    -fx-text-fill: white;
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {

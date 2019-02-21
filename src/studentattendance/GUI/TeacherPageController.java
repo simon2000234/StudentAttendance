@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import studentattendance.BE.Attendance;
 import studentattendance.BE.Student;
 import studentattendance.BE.Teacher;
 import studentattendance.StudentAttendance;
@@ -32,7 +33,7 @@ import studentattendance.StudentAttendance;
  */
 public class TeacherPageController implements Initializable
 {
-    
+
     private SAModel model;
     @FXML
     private Label lblTeacherName;
@@ -43,6 +44,11 @@ public class TeacherPageController implements Initializable
     private TableColumn<Student, String> columnStudentName;
     @FXML
     private TableColumn<Student, Double> columnAttendance;
+    private int Mandag;
+    private int Tirsdag;
+    private int Onsdag;
+    private int Torsdag;
+    private int Fredag;
 
     /**
      * Initializes the controller class.
@@ -52,7 +58,7 @@ public class TeacherPageController implements Initializable
     {
         columnStudentName.setCellValueFactory(new PropertyValueFactory<>("name"));
         columnAttendance.setCellValueFactory(new PropertyValueFactory<>("attendanceString"));
-        
+
     }
 
     public void setMsmodel(SAModel model)
@@ -61,10 +67,31 @@ public class TeacherPageController implements Initializable
         lblTeacherName.setText(model.getCurrentUser().getName());
         teacher = (Teacher) model.getCurrentUser();
         tableAttendance.setItems(model.getStudents());
-//        for (Student student : model.getStudents())
-//        {
-//            System.out.println(""+student.);
-//        }
+        columnAttendance.setComparator(columnAttendance.getComparator().reversed());
+        tableAttendance.getSortOrder().add(columnAttendance);
+
+    }
+
+    @FXML
+    private void close(ActionEvent event)
+    {
+        try
+        {
+            Parent root;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(StudentAttendance.class.getResource("GUI/FXMLDocument.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Log in");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            Stage current = (Stage) lblTeacherName.getScene().getWindow();
+            current.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(RootLayerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -89,4 +116,38 @@ public class TeacherPageController implements Initializable
         }
     }
     
+    public void absentDays(Student student)
+    {
+        Mandag = 0;
+        Tirsdag = 0;
+        Onsdag = 0;
+        Torsdag = 0;
+        Fredag = 0;
+        
+            for (Attendance attendance : student.getAttendance())
+            {
+                if (attendance.getDayOfWeek().contains("Mandag") && attendance.isIsAttending()==false)
+                {
+                    Mandag++;
+                }
+                if (attendance.getDayOfWeek().contains("Tirsdag") && attendance.isIsAttending()==false)
+                {
+                    Tirsdag++;
+                }
+                if (attendance.getDayOfWeek().contains("Onsdag") && attendance.isIsAttending()==false)
+                {
+                    Onsdag++;
+                }
+                if (attendance.getDayOfWeek().contains("Torsdag") && attendance.isIsAttending()==false)
+                {
+                    Torsdag++;
+                }
+                if (attendance.getDayOfWeek().contains("Fredag") && attendance.isIsAttending()==false)
+                {
+                    Fredag++;
+                }
+            }
+            
+    }
+
 }

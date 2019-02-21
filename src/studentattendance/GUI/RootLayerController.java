@@ -84,12 +84,8 @@ public class RootLayerController implements Initializable
             stage.setScene(new Scene(root));
             stage.show();
             
-//            RootLayerController rlController = loader.getController();
-//            rlController.setMsmodel(model);
-            
             Stage current = (Stage) lblName.getScene().getWindow();
             current.close();
-//        System.exit(0);
         } catch (IOException ex)
         {
             Logger.getLogger(RootLayerController.class.getName()).log(Level.SEVERE, null, ex);
