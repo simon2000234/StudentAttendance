@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import studentattendance.BE.Attendance;
 import studentattendance.BE.Person;
 import studentattendance.BE.Student;
+import studentattendance.BE.TeacherAlert;
 import studentattendance.BLL.AManager;
 
 /**
@@ -26,18 +27,28 @@ public class SAModel
     
     private ObservableList<Attendance> attendance;
     
+    private ObservableList<TeacherAlert> OBSTeacherAlerts;
+    
     private Attendance attendanceEdit;
 
     public SAModel()
     {
         AM = new AManager();
         this.attendance = FXCollections.observableArrayList();
+        OBSTeacherAlerts = FXCollections.observableArrayList();
     }
 
     public ObservableList<Attendance> getOBSAttendance()
     {
         return attendance;
     }
+
+    public ObservableList<TeacherAlert> getOBSTeacherAlerts()
+    {
+        return OBSTeacherAlerts;
+    }
+    
+    
 
     /**
      * Get the value of currentUser
