@@ -39,35 +39,28 @@ public class AManager
         int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
 
         String dayOfTheWeek;
-        if(dayOfWeek == 2)
+        if (dayOfWeek == 2)
         {
             dayOfTheWeek = "Mandag";
-        }
-        else if(dayOfWeek == 3)
+        } else if (dayOfWeek == 3)
         {
             dayOfTheWeek = "Tirsdag";
-        }
-        else if (dayOfWeek == 4)
+        } else if (dayOfWeek == 4)
         {
             dayOfTheWeek = "Onsdag";
-        }
-        else if(dayOfWeek == 5)
+        } else if (dayOfWeek == 5)
         {
             dayOfTheWeek = "Torsdag";
-        }
-        else if(dayOfWeek == 6)
+        } else if (dayOfWeek == 6)
         {
             dayOfTheWeek = "Fredag";
-        }
-        else if (dayOfWeek == 7)
+        } else if (dayOfWeek == 7)
         {
             dayOfTheWeek = "Lørdag";
-        }
-        else if (dayOfWeek == 1)
+        } else if (dayOfWeek == 1)
         {
             dayOfTheWeek = "Søndag";
-        }
-        else 
+        } else
         {
             dayOfTheWeek = "Something went wrong";
         }
@@ -75,5 +68,9 @@ public class AManager
         student.getAttendance().add(attendance);
         return attendance;
     }
-
+    
+    public ArrayList<Student> getAllStudents()
+    {
+        return personDAO.getAllStudents();
+    }
 }
