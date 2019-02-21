@@ -5,16 +5,25 @@
  */
 package studentattendance.GUI;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import studentattendance.BE.Student;
 import studentattendance.BE.Teacher;
+import studentattendance.StudentAttendance;
 
 /**
  * FXML Controller class
@@ -56,6 +65,28 @@ public class TeacherPageController implements Initializable
 //        {
 //            System.out.println(""+student.);
 //        }
+    }
+
+    @FXML
+    private void handleCheckAlerts(ActionEvent event)
+    {
+        try
+        {
+            Parent root;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(StudentAttendance.class.getResource("GUI/TeacherNotifications.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Alerts");
+            stage.setScene(new Scene(root));
+            stage.show();
+            
+            TeacherNotificationsController tnController = loader.getController();
+            tnController.setModel(model);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(TeacherPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

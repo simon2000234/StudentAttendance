@@ -16,23 +16,17 @@ public class Teacher extends Person
 
     
     private ArrayList<TeacherAlert> teacherAlerts;
-    
-    public Teacher(String name, String username, String password, int id)
+
+    public Teacher(ArrayList<TeacherAlert> teacherAlerts, String name, String username, String password, int id)
     {
         super(name, username, password, id);
+        this.teacherAlerts = teacherAlerts;
     }
+    
 
     public ArrayList<TeacherAlert> getTeacherAlerts()
     {
         return teacherAlerts;
     }
-
-    public void setTeacherAlerts(ArrayList<TeacherAlert> teacherAlerts)
-    {
-        this.teacherAlerts = teacherAlerts;
-    }
-    
-    
-    
-    
+   
 }
