@@ -104,6 +104,28 @@ public class TeacherPageController implements Initializable
         }
     }
 
+    @FXML
+    private void handleCheckAlerts(ActionEvent event)
+    {
+        try
+        {
+            Parent root;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(StudentAttendance.class.getResource("GUI/TeacherNotifications.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Alerts");
+            stage.setScene(new Scene(root));
+            stage.show();
+            
+            TeacherNotificationsController tnController = loader.getController();
+            tnController.setModel(model);
+        } catch (IOException ex)
+        {
+            Logger.getLogger(TeacherPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void absentDays(Student student)
     {
         Mandag = 0;

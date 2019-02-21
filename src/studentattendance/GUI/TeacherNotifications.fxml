@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studentattendance.GUI.TeacherNotificationsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="814.0" styleClass="background" stylesheets="@OriginalTheme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="studentattendance.GUI.TeacherNotificationsController">
    <right>
-      <ListView fx:id="lstAlerts" prefHeight="400.0" prefWidth="382.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="lstAlerts" prefHeight="400.0" prefWidth="609.0" BorderPane.alignment="CENTER" />
    </right>
    <left>
-      <AnchorPane prefHeight="400.0" prefWidth="209.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="400.0" prefWidth="194.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="teacherName" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="109.0" text="Teacher name">
                <font>
@@ -21,7 +21,7 @@
             </Label>
             <Button layoutX="14.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleConfirm" text="Confirm" />
             <Button layoutX="143.0" layoutY="175.0" mnemonicParsing="false" onAction="#handleDeny" text="Deny" />
-            <Label fx:id="lblConfirmation" layoutX="91.0" layoutY="280.0" />
+            <Label fx:id="lblConfirmation" layoutX="2.0" layoutY="286.0" prefHeight="29.0" prefWidth="248.0" />
          </children>
       </AnchorPane>
    </left>

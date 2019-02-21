@@ -49,7 +49,7 @@ public class TeacherNotificationsController implements Initializable
             model.getOBSTeacherAlerts().remove(alert);
             //Insert Mehtord that changes database
             lblConfirmation.setText(alert.getStudent().getName()
-                    + "'s Attendance change has been confirmed");
+                    + "'s change is confirmed");
         }
     }
 
@@ -62,11 +62,11 @@ public class TeacherNotificationsController implements Initializable
             model.getOBSTeacherAlerts().remove(lstAlerts.getSelectionModel().getSelectedItem());
             //DO NOT insert Mehtord that changes database
             lblConfirmation.setText(alert.getStudent().getName()
-                    + "'s Attendance change has been denied");
+                    + "'s change is denied");
         }
     }
 
-    private void setModel(SAModel model)
+    public void setModel(SAModel model)
     {
         this.model = model;
         currentUser = (Teacher) model.getCurrentUser();

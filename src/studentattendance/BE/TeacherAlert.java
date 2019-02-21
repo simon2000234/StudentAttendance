@@ -37,6 +37,33 @@ public class TeacherAlert
         return oAttendance;
     }
 
+    @Override
+    public String toString()
+    {
+        String oIsThere;
+        String nIsThere;
+        if (oAttendance.isIsAttending() == true)
+        {
+            oIsThere = "Attending";
+        }
+        else
+        {
+            oIsThere = "not Attending";
+        }
+        if (nAtendance.isIsAttending() == true)
+        {
+            nIsThere = "Attending";
+        }
+        else
+        {
+             nIsThere = "not Attending";
+        }
+        return student.getName() + " wants to change his/hers Attendance on " +
+                oAttendance.getDate() + " from " + oIsThere + " to " + nIsThere;
+    }
+    
+    
+
 
     
 }

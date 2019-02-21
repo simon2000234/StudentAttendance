@@ -121,10 +121,11 @@ public class MockData
 
     public Teacher createTracherJohnKeating()
     {
-        Teacher John = new Teacher("John Keating", "Captain@mail.com", "1234", 6);
-//        John.getTeacherAlerts().add(new TeacherAlert(createStudentAlex(), 
-//                new Attendance(true, "31-01-2019", "Torsdag"), 
-//                new Attendance(false, "31-01-2019", "Torsdag")));
+        ArrayList<TeacherAlert> ta = new ArrayList();
+        ta.add(new TeacherAlert(createStudentAlex(), 
+                new Attendance(true, "31-01-2019", "Torsdag"), 
+                new Attendance(false, "31-01-2019", "Torsdag"))); 
+        Teacher John = new Teacher(ta, "John Keating", "Captain@mail.com", "1234", 6);
         return John;
     }
     
