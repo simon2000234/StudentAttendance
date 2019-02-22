@@ -34,7 +34,7 @@
       </AnchorPane>
    </left>
    <right>
-      <TableView fx:id="tableAttendance" onMouseClicked="#handleSelectStudent" prefHeight="375.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableAttendance" onMouseClicked="#handleSelectStudent" prefHeight="375.0" prefWidth="260.0" styleClass="table-cell" stylesheets="@OriginalTheme.css" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="columnStudentName" prefWidth="169.0" text="Student" />
           <TableColumn fx:id="columnAttendance" prefWidth="89.0" text="Absence %" />

@@ -11,6 +11,10 @@ and open the template in the editor.
     -fx-background-color: #333333;
 }
 
+.axis   {
+    -fx-tick-label-fill: #ffffff;
+}
+
 .image-view {
     -fx-border-width: 1;
     -fx-border-color: #000000;
@@ -83,10 +87,6 @@ and open the template in the editor.
 .table-view .indexed-cell:odd {
     -fx-background-color: #777777;
     -fx-text-fill: white;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
 }
 
 .split-pane:horizontal > .split-pane-divider {
