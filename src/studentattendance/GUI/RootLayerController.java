@@ -51,6 +51,8 @@ public class RootLayerController implements Initializable
     private ListView<Attendance> lstAttendance;
     @FXML
     private Label lblAttendance;
+    @FXML
+    private Label lblHiden;
 
     /**
      * Initializes the controller class.
@@ -129,7 +131,7 @@ public class RootLayerController implements Initializable
     {
         if (lstAttendance.getSelectionModel().getSelectedItem() == null)
         {
-            System.out.println("Please sellect a day to edit");
+            lblHiden.setText("Please sellect a day to edit");
         } else
         {
             model.setAttendanceEdit(lstAttendance.getSelectionModel().getSelectedItem());
