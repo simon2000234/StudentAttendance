@@ -131,7 +131,7 @@ public class RootLayerController implements Initializable
     {
         if (lstAttendance.getSelectionModel().getSelectedItem() == null)
         {
-            lblHiden.setText("Please sellect a day to edit");
+            lblHiden.setText("Please select a day to edit");
         } else
         {
             model.setAttendanceEdit(lstAttendance.getSelectionModel().getSelectedItem());
