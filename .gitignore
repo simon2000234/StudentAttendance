@@ -26,3 +26,5 @@ build/built-jar.properties
 *.properties
 build/classes/studentattendance/GUI/TeacherPage.fxml
 build/classes/studentattendance/GUI/TeacherNotifications.fxml
+nbproject/private/private.xml
+nbproject/private/private.properties
