@@ -6,7 +6,6 @@
 package studentattendance.DAL;
 
 import java.util.ArrayList;
-import java.util.List;
 import studentattendance.BE.Attendance;
 import studentattendance.BE.Student;
 import studentattendance.BE.Teacher;
