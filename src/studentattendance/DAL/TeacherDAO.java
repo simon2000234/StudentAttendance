@@ -130,7 +130,16 @@ public class TeacherDAO
         }
         return teacherAlerts;
     }
-    
+    /**
+     * A methord to create an alert for a teacher
+     * @param TeacherId the teacher who gets the alert
+     * @param StudentId the student who sent it
+     * @param OldAttendanceId the students current attendance that they 
+     * whish to change
+     * @param newAttendanceId the attendance that the student wish to change
+     * it to
+     * @throws SQLException
+     */
     public void createTeacherAlert(int TeacherId, int StudentId, int OldAttendanceId, int newAttendanceId) throws SQLException
     {
         String SQL = "INSERT INTO TeacherAlet("

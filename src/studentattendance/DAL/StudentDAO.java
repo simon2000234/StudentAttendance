@@ -28,6 +28,38 @@ public class StudentDAO
         DB = new DBConnectionProvider();
     }
 
+    
+    public void createSutdent(String Username, String Password, String Name) throws SQLException
+    {
+        String SQL = "INSERT INTO Sutdent(Username, Password, Name) VALUES(?,?,?)";
+        
+        
+        try(Connection con = DB.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setString(1, Username);
+            st.setString(2, Password);
+            st.setString(3, Name);
+            st.executeUpdate();
+        }
+    }
+    
+    public void createAttendance(boolean isAttending, String date, String dayOfTheWeek, int studentId) throws SQLException
+    {
+        String SQL = "INSERT INTO Attendance(isAttending, date, dayOfTheWeek,"
+                + " studentId) VALUES(?,?,?,?)";
+        
+        try(Connection con = DB.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setBoolean(1, isAttending);
+            st.setString(2, date);
+            st.setString(3, dayOfTheWeek);
+            st.setInt(4, studentId);
+            st.executeUpdate();
+        }      
+    }
+    
     /**
      * A methord for getting a Student
      *
