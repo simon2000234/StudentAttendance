@@ -130,5 +130,22 @@ public class TeacherDAO
         }
         return teacherAlerts;
     }
+    
+    public void createTeacherAlert(int TeacherId, int StudentId, int OldAttendanceId, int newAttendanceId) throws SQLException
+    {
+        String SQL = "INSERT INTO TeacherAlet("
+                + "TeacherId, StudentId, OldAttendanceId, NewAttendanceId) "
+                + "VALUES(?,?,?,?);";
+        
+        try(Connection con = DB.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setInt(1, TeacherId);
+            st.setInt(2, StudentId);
+            st.setInt(3, OldAttendanceId);
+            st.setInt(4, newAttendanceId);
+            st.executeUpdate();
+        }
+    }
 
 }
