@@ -47,7 +47,6 @@ public class TeacherDAO
             st.executeUpdate();
 
         }
-
     }
 
     /**
