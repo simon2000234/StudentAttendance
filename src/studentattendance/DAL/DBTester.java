@@ -7,8 +7,6 @@ package studentattendance.DAL;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import studentattendance.BE.Person;
 import studentattendance.BE.Teacher;
 
 /**
