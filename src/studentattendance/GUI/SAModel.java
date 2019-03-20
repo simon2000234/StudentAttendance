@@ -5,7 +5,10 @@
  */
 package studentattendance.GUI;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import studentattendance.BE.Attendance;
@@ -39,7 +42,14 @@ public class SAModel
         this.attendance = FXCollections.observableArrayList();
         OBSTeacherAlerts = FXCollections.observableArrayList();
         this.students = FXCollections.observableArrayList();
-        students.addAll(AM.getAllStudents());
+        try
+        {
+            students.addAll(AM.getAllStudents());
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Someting went wrong with getting alle the students, maybe internet is gone");
+        }
     }
 
     public ObservableList<Attendance> getOBSAttendance()

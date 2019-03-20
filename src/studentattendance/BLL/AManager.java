@@ -13,6 +13,7 @@ import studentattendance.BE.Attendance;
 import studentattendance.BE.Person;
 import studentattendance.BE.Student;
 import studentattendance.DAL.PersonDAO;
+import studentattendance.DAL.StudentDAO;
 
 /**
  *
@@ -22,10 +23,12 @@ public class AManager
 {
 
     private PersonDAO personDAO;
+    private StudentDAO studentDAO;
 
     public AManager()
     {
         personDAO = new PersonDAO();
+        studentDAO = new StudentDAO();
     }
 
     public ArrayList<Person> getAllPersons() throws SQLException
@@ -70,8 +73,8 @@ public class AManager
         return attendance;
     }
     
-    public ArrayList<Student> getAllStudents()
+    public ArrayList<Student> getAllStudents() throws SQLException
     {
-        return personDAO.getAllStudents();
+        return studentDAO.getAllStudents();
     }
 }
