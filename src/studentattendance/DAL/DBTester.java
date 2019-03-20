@@ -8,6 +8,7 @@ package studentattendance.DAL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import studentattendance.BE.Person;
 import studentattendance.BE.Teacher;
 
 /**
@@ -16,14 +17,15 @@ import studentattendance.BE.Teacher;
  */
 public class DBTester
 {
-    
+
     public static void main(String[] args) throws SQLException
     {
-        TeacherDAO tDAO = new TeacherDAO();
-        List<Teacher> t = tDAO.getAllTeachers();
-        for (Teacher teacher : t)
+        
+        TeacherDAO td = new TeacherDAO();
+        StudentDAO sd = new StudentDAO();
+        ArrayList<Teacher> list = td.getAllTeachers();
+        for (Teacher teacher : list)
         {
-            System.out.println(teacher.getId());
             System.out.println(teacher.getName());
         }
     }

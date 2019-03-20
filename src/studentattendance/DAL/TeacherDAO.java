@@ -55,7 +55,7 @@ public class TeacherDAO
      * @return an ArrayList of Teachers
      * @throws SQLException
      */
-    public List<Teacher> getAllTeachers() throws SQLException
+    public ArrayList<Teacher> getAllTeachers() throws SQLException
     {
         ArrayList<Teacher> allTeachers = new ArrayList<>();
 
@@ -141,7 +141,7 @@ public class TeacherDAO
      */
     public void createTeacherAlert(int TeacherId, int StudentId, int OldAttendanceId, int newAttendanceId) throws SQLException
     {
-        String SQL = "INSERT INTO TeacherAlet("
+        String SQL = "INSERT INTO TeacherAlert("
                 + "TeacherId, StudentId, OldAttendanceId, NewAttendanceId) "
                 + "VALUES(?,?,?,?);";
         

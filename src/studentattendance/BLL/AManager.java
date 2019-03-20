@@ -5,6 +5,7 @@
  */
 package studentattendance.BLL;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,7 +28,7 @@ public class AManager
         personDAO = new PersonDAO();
     }
 
-    public ArrayList<Person> getAllPersons()
+    public ArrayList<Person> getAllPersons() throws SQLException
     {
         return personDAO.getAllPersons();
     }

@@ -28,13 +28,11 @@ public class StudentDAO
         DB = new DBConnectionProvider();
     }
 
-    
     public void createSutdent(String Username, String Password, String Name) throws SQLException
     {
         String SQL = "INSERT INTO Sutdent(Username, Password, Name) VALUES(?,?,?)";
-        
-        
-        try(Connection con = DB.getConnection())
+
+        try (Connection con = DB.getConnection())
         {
             PreparedStatement st = con.prepareStatement(SQL);
             st.setString(1, Username);
@@ -43,23 +41,24 @@ public class StudentDAO
             st.executeUpdate();
         }
     }
-    
-    public void createAttendance(boolean isAttending, String date, String dayOfTheWeek, int studentId) throws SQLException
+
+    public void createAttendance(boolean isAttending, String date, String dayOfTheWeek, int studentId, boolean isReal) throws SQLException
     {
         String SQL = "INSERT INTO Attendance(isAttending, date, dayOfTheWeek,"
-                + " studentId) VALUES(?,?,?,?)";
-        
-        try(Connection con = DB.getConnection())
+                + " studentId, isReal) VALUES(?,?,?,?,?)";
+
+        try (Connection con = DB.getConnection())
         {
             PreparedStatement st = con.prepareStatement(SQL);
             st.setBoolean(1, isAttending);
             st.setString(2, date);
             st.setString(3, dayOfTheWeek);
             st.setInt(4, studentId);
+            st.setBoolean(5, isReal);
             st.executeUpdate();
-        }      
+        }
     }
-    
+
     /**
      * A methord for getting a Student
      *
@@ -77,18 +76,44 @@ public class StudentDAO
             PreparedStatement st = con.prepareStatement(SQL);
             st.setInt(1, StudentID);
             ResultSet rs = st.executeQuery();
-            String Name = rs.getString("Name");
-            String Username = rs.getString("Username");
-            String Password = rs.getString("Password");
-            ArrayList<Attendance> ListAttendance = getAllAttendance(StudentID);
-            student = new Student(Name, Username, Password, StudentID, ListAttendance);
+            while (rs.next())
+            {
+                String Name = rs.getString("Name");
+                String Username = rs.getString("Username");
+                String Password = rs.getString("Password");
+                ArrayList<Attendance> ListAttendance = getAllAttendance(StudentID);
+                student = new Student(Name, Username, Password, StudentID, ListAttendance);
+            }
         }
 
         if (student == null)
         {
-            System.out.println("The Student does not excist, or internet problem");
+            System.out.println("The Student does not exist, or internet problem");
         }
         return student;
+    }
+
+    public ArrayList<Student> getAllStudents() throws SQLException
+    {
+        String SQL = "SELECT * FROM Sutdent;";
+        ArrayList<Student> allStudents = new ArrayList<>();
+        try (Connection con = DB.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(SQL);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next())
+            {
+                String Name = rs.getString("Name");
+                String Username = rs.getString("Username");
+                String Password = rs.getString("Password");
+                int Id = rs.getInt("Id");
+                ArrayList<Attendance> ListAttendance = getAllAttendance(Id);
+                Student student = new Student(Name, Username, Password, Id, ListAttendance);
+                allStudents.add(student);
+            }
+        }
+        return allStudents;
     }
 
     /**
@@ -113,7 +138,8 @@ public class StudentDAO
                 if (rs.getBoolean("isAttending") == true)
                 {
                     isAttending = true;
-                } else
+                }
+                else
                 {
                     isAttending = false;
                 }
@@ -132,17 +158,21 @@ public class StudentDAO
 
     public Attendance getAAttendance(int attendanceId) throws SQLException
     {
+        Attendance att = null;
         String SQL = "SELECT * FROM Attendance WHERE Id = ?";
         try (Connection con = DB.getConnection())
         {
             PreparedStatement st = con.prepareStatement(SQL);
             st.setInt(1, attendanceId);
             ResultSet rs = st.executeQuery();
+            while(rs.next())
+            {
             boolean isAttending;
             if (rs.getBoolean("isAttending") == true)
             {
                 isAttending = true;
-            } else
+            }
+            else
             {
                 isAttending = false;
             }
@@ -150,9 +180,11 @@ public class StudentDAO
             String Date = rs.getString("date");
             String DayOfWeek = rs.getString("dayOfTheWeek");
 
-            Attendance att = new Attendance(isAttending, Date, DayOfWeek);
-            return att;
+            att = new Attendance(isAttending, Date, DayOfWeek);
+            }
+            
         }
+        return att;
     }
 
 }

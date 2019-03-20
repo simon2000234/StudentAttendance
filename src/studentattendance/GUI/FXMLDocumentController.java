@@ -7,6 +7,7 @@ package studentattendance.GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -44,8 +45,6 @@ public class FXMLDocumentController implements Initializable
     {
         model = new SAModel();
     }
-    
-    
 
     @FXML
     private void handleOkBtn(ActionEvent event)
@@ -64,18 +63,20 @@ public class FXMLDocumentController implements Initializable
                 stage.setTitle("Student");
                 stage.setScene(new Scene(root, 600, 450));
                 stage.show();
-                
+
                 RootLayerController rlController = loader.getController();
                 rlController.setMsmodel(model);
-                
+
                 Stage current = (Stage) txtUsername.getScene().getWindow();
                 current.close();
-                
-            } catch (IOException ex)
+
+            }
+            catch (IOException ex)
             {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (isTeacher())
+        }
+        else if (isTeacher())
         {
             try
             {
@@ -87,40 +88,51 @@ public class FXMLDocumentController implements Initializable
                 stage.setTitle("Teacher");
                 stage.setScene(new Scene(root));
                 stage.show();
-                
+
                 TeacherPageController tpController = loader.getController();
                 tpController.setMsmodel(model);
-                
+
                 Stage current = (Stage) txtUsername.getScene().getWindow();
                 current.close();
 
-            } catch (IOException ex)
+            }
+            catch (IOException ex)
             {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else
+        }
+        else
         {
             System.out.println("Wrong Password or Username");
 
         }
 
     }
-    
+
     public boolean isTeacher()
     {
         AManager am = new AManager();
         boolean isTeacher = false;
-        ArrayList<Person> list = am.getAllPersons();
-        for (Person person : list)
+        ArrayList<Person> list;
+        try
         {
-            if (txtUsername.getText().equals(person.getUsername())
-                    && txtPassword.getText().equals(person.getPassword())
-                    && person.getClass() == Teacher.class)
+            list = am.getAllPersons();
+            for (Person person : list)
             {
-                isTeacher = true;
-                model.setCurrentUser(person);
+                if (txtUsername.getText().equals(person.getUsername())
+                        && txtPassword.getText().equals(person.getPassword())
+                        && person.getClass() == Teacher.class)
+                {
+                    isTeacher = true;
+                    model.setCurrentUser(person);
+                }
             }
         }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return isTeacher;
     }
 
@@ -128,17 +140,26 @@ public class FXMLDocumentController implements Initializable
     {
         AManager am = new AManager();
         boolean isStudent = false;
-        ArrayList<Person> list = am.getAllPersons();
-        for (Person person : list)
+        ArrayList<Person> list;
+        try
         {
-            if (txtUsername.getText().equals(person.getUsername())
-                    && txtPassword.getText().equals(person.getPassword())
-                    && person.getClass() == Student.class)
+            list = am.getAllPersons();
+            for (Person person : list)
             {
-                isStudent = true;
-                model.setCurrentUser(person);
+                if (txtUsername.getText().equals(person.getUsername())
+                        && txtPassword.getText().equals(person.getPassword())
+                        && person.getClass() == Student.class)
+                {
+                    isStudent = true;
+                    model.setCurrentUser(person);
+                }
             }
         }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         return isStudent;
     }
 

@@ -5,9 +5,11 @@
  */
 package studentattendance.DAL;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import studentattendance.BE.Person;
 import studentattendance.BE.Student;
+import studentattendance.BE.Teacher;
 
 /**
  *
@@ -16,16 +18,29 @@ import studentattendance.BE.Student;
 public class PersonDAO
 {
 
-    public ArrayList<Person> getAllPersons()
+    private StudentDAO sd;
+    private TeacherDAO td;
+
+    public PersonDAO()
     {
-        MockData md = new MockData();
+        sd = new StudentDAO();
+        td = new TeacherDAO();
+    }
+    
+    public ArrayList<Person> getAllPersons() throws SQLException
+    {
+        
         ArrayList<Person> persons = new ArrayList<>();
-        persons.add(md.createStudentAlex());
-        persons.add(md.createStudentIna());
-        persons.add(md.createStudentJake());
-        persons.add(md.createStudentJohn());
-        persons.add(md.createStudentKarl());
-        persons.add(md.createTracherJohnKeating());
+        ArrayList<Student> students = sd.getAllStudents();
+        for (Student student : students)
+        {
+            persons.add(student);
+        }
+        ArrayList<Teacher> teachers = td.getAllTeachers();
+        for (Teacher teacher : teachers)
+        {
+            persons.add(teacher);
+        }
 
         return persons;
     }
