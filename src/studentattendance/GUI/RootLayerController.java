@@ -5,8 +5,9 @@
  */
 package studentattendance.GUI;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -82,10 +83,11 @@ public class RootLayerController implements Initializable
             stage.setTitle("Log in");
             stage.setScene(new Scene(root));
             stage.show();
-            
+
             Stage current = (Stage) lblName.getScene().getWindow();
             current.close();
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(RootLayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -94,14 +96,28 @@ public class RootLayerController implements Initializable
     @FXML
     private void handleIsPresent(ActionEvent event)
     {
-        model.getOBSAttendance().add(model.addAtendance(student, true));
+        try
+        {
+            model.getOBSAttendance().add(model.addAtendance(student, true, true));
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Something went wrong when adding attendance, are you on the schools internet");;
+        }
         caluclateAttendance(student);
     }
 
     @FXML
     private void handleIsAbsent(ActionEvent event)
     {
-        model.getOBSAttendance().add(model.addAtendance(student, false));
+        try
+        {
+            model.getOBSAttendance().add(model.addAtendance(student, false, false));
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("Something went wrong when adding attendance, are you on the schools internet");;
+        }
         caluclateAttendance(student);
     }
 
@@ -118,7 +134,7 @@ public class RootLayerController implements Initializable
             }
         }
         double absence = (notHere / total) * 100;
-        String formatted = String.format("%.2f", absence);       
+        String formatted = String.format("%.2f", absence);
         lblAttendance.setText("Absence = " + formatted + "%");
 
     }
@@ -129,7 +145,8 @@ public class RootLayerController implements Initializable
         if (lstAttendance.getSelectionModel().getSelectedItem() == null)
         {
             lblHiden.setText("Please select a day to edit");
-        } else
+        }
+        else
         {
             model.setAttendanceEdit(lstAttendance.getSelectionModel().getSelectedItem());
             try
@@ -142,13 +159,13 @@ public class RootLayerController implements Initializable
                 stage.setTitle("Edit Attendance");
                 stage.setScene(new Scene(root, 500, 200));
                 stage.show();
-                
+
                 EditAttendanceController eaController = loader.getController();
                 eaController.setMsmodel(model);
                 eaController.connectController(this);
-                
-                
-            } catch (IOException ex)
+
+            }
+            catch (IOException ex)
             {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }

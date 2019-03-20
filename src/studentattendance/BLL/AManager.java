@@ -36,7 +36,7 @@ public class AManager
         return personDAO.getAllPersons();
     }
 
-    public Attendance addAtendance(Student student, boolean isPressent)
+    public Attendance addAtendance(Student student, boolean isPressent, boolean isReal) throws SQLException
     {
         String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
         Calendar c = Calendar.getInstance();
@@ -70,6 +70,7 @@ public class AManager
         }
         Attendance attendance = new Attendance(isPressent, timeStamp, dayOfTheWeek);
         student.getAttendance().add(attendance);
+        studentDAO.createAttendance(isPressent, timeStamp, dayOfTheWeek, student.getId(), isReal);
         return attendance;
     }
     

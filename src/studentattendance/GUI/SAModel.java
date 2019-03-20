@@ -84,9 +84,9 @@ public class SAModel
         this.currentUser = currentUser;
     }
 
-    public Attendance addAtendance(Student student, boolean isPressent)
+    public Attendance addAtendance(Student student, boolean isPressent, boolean isReal) throws SQLException
     {
-        return AM.addAtendance(student, isPressent);
+        return AM.addAtendance(student, isPressent, isReal);
     }
 
     public Attendance getAttendanceEdit()

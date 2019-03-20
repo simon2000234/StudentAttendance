@@ -50,11 +50,17 @@ public class TeacherPageController implements Initializable
     private TableColumn<Student, String> columnStudentName;
     @FXML
     private TableColumn<Student, Double> columnAttendance;
-    private int Mandag;
-    private int Tirsdag;
-    private int Onsdag;
-    private int Torsdag;
-    private int Fredag;
+    private double Mandag;
+    private double Tirsdag;
+    private double Onsdag;
+    private double Torsdag;
+    private double Fredag;
+    // d = divide;
+    private double dMandag;
+    private double dTirsdag;
+    private double dOnsdag;
+    private double dTorsdag;
+    private double dFredag;
     @FXML
     private BarChart<?, ?> barChart;
     @FXML
@@ -98,7 +104,8 @@ public class TeacherPageController implements Initializable
 
             Stage current = (Stage) lblTeacherName.getScene().getWindow();
             current.close();
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(RootLayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -117,15 +124,16 @@ public class TeacherPageController implements Initializable
             stage.setTitle("Alerts");
             stage.setScene(new Scene(root));
             stage.show();
-            
+
             TeacherNotificationsController tnController = loader.getController();
             tnController.setModel(model);
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(TeacherPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void absentDays(Student student)
     {
         Mandag = 0;
@@ -133,31 +141,59 @@ public class TeacherPageController implements Initializable
         Onsdag = 0;
         Torsdag = 0;
         Fredag = 0;
-        
-            for (Attendance attendance : student.getAttendance())
+
+        for (Attendance attendance : student.getAttendance())
+        {
+            if (attendance.getDayOfWeek().contains("Mandag") && attendance.isIsAttending() == false)
             {
-                if (attendance.getDayOfWeek().contains("Mandag") && attendance.isIsAttending()==false)
-                {
-                    Mandag++;
-                }
-                if (attendance.getDayOfWeek().contains("Tirsdag") && attendance.isIsAttending()==false)
-                {
-                    Tirsdag++;
-                }
-                if (attendance.getDayOfWeek().contains("Onsdag") && attendance.isIsAttending()==false)
-                {
-                    Onsdag++;
-                }
-                if (attendance.getDayOfWeek().contains("Torsdag") && attendance.isIsAttending()==false)
-                {
-                    Torsdag++;
-                }
-                if (attendance.getDayOfWeek().contains("Fredag") && attendance.isIsAttending()==false)
-                {
-                    Fredag++;
-                }
+                Mandag++;
             }
-            
+            if (attendance.getDayOfWeek().contains("Tirsdag") && attendance.isIsAttending() == false)
+            {
+                Tirsdag++;
+            }
+            if (attendance.getDayOfWeek().contains("Onsdag") && attendance.isIsAttending() == false)
+            {
+                Onsdag++;
+            }
+            if (attendance.getDayOfWeek().contains("Torsdag") && attendance.isIsAttending() == false)
+            {
+                Torsdag++;
+            }
+            if (attendance.getDayOfWeek().contains("Fredag") && attendance.isIsAttending() == false)
+            {
+                Fredag++;
+            }
+        }
+        for (Attendance attendance : student.getAttendance())
+        {
+            if (attendance.getDayOfWeek().contains("Mandag"))
+            {
+                dMandag++;
+            }
+            if (attendance.getDayOfWeek().contains("Tirsdag"))
+            {
+                dTirsdag++;
+            }
+            if (attendance.getDayOfWeek().contains("Onsdag"))
+            {
+                dOnsdag++;
+            }
+            if (attendance.getDayOfWeek().contains("Torsdag"))
+            {
+                dTorsdag++;
+            }
+            if (attendance.getDayOfWeek().contains("Fredag"))
+            {
+                dFredag++;
+            }
+        }
+        Mandag = Mandag/dMandag;
+        Tirsdag = Tirsdag/dTirsdag;
+        Onsdag = Onsdag/dOnsdag;
+        Torsdag = Torsdag/dTorsdag;
+        Fredag = Fredag/dFredag;
+
     }
 
     @FXML
@@ -166,8 +202,8 @@ public class TeacherPageController implements Initializable
         model.setSelectedStudent(tableAttendance.getSelectionModel().getSelectedItem());
         borderPane.setCenter(buildBarChart());
     }
-    
-     private BarChart buildBarChart()
+
+    private BarChart buildBarChart()
     {
         absentDays(model.getSelectedStudent());
         //Creating X and Y axis
