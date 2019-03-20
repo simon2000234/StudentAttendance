@@ -5,9 +5,12 @@
  */
 package studentattendance.GUI;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -82,7 +85,7 @@ public class RootLayerController implements Initializable
             stage.setTitle("Log in");
             stage.setScene(new Scene(root));
             stage.show();
-            
+
             Stage current = (Stage) lblName.getScene().getWindow();
             current.close();
         } catch (IOException ex)
@@ -94,8 +97,26 @@ public class RootLayerController implements Initializable
     @FXML
     private void handleIsPresent(ActionEvent event)
     {
+        String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        boolean isAlreadyThere = false;
+        ArrayList<Attendance> list = student.getAttendance();
+        for (Attendance attendance : list)
+        {
+            if (attendance.getDate().equals(timeStamp))
+            {
+             isAlreadyThere = true;   
+            }
+        }
+        if(isAlreadyThere = false)
+        {
         model.getOBSAttendance().add(model.addAtendance(student, true));
         caluclateAttendance(student);
+        }
+        else
+        {
+            System.out.println("The attendance is already there");
+        }
+
     }
 
     @FXML
@@ -118,7 +139,7 @@ public class RootLayerController implements Initializable
             }
         }
         double absence = (notHere / total) * 100;
-        String formatted = String.format("%.2f", absence);       
+        String formatted = String.format("%.2f", absence);
         lblAttendance.setText("Absence = " + formatted + "%");
 
     }
@@ -142,12 +163,11 @@ public class RootLayerController implements Initializable
                 stage.setTitle("Edit Attendance");
                 stage.setScene(new Scene(root, 500, 200));
                 stage.show();
-                
+
                 EditAttendanceController eaController = loader.getController();
                 eaController.setMsmodel(model);
                 eaController.connectController(this);
-                
-                
+
             } catch (IOException ex)
             {
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
