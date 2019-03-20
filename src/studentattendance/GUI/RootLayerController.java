@@ -8,7 +8,9 @@ package studentattendance.GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -96,29 +98,64 @@ public class RootLayerController implements Initializable
     @FXML
     private void handleIsPresent(ActionEvent event)
     {
-        try
+        String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        boolean isAlreadyThere = false;
+        ArrayList<Attendance> list = student.getAttendance();
+        for (Attendance attendance : list)
         {
-            model.getOBSAttendance().add(model.addAtendance(student, true, true));
+            if (attendance.getDate().equals(timeStamp))
+            {
+                isAlreadyThere = true;
+            }
         }
-        catch (SQLException ex)
+        if (isAlreadyThere = false)
         {
-            System.out.println("Something went wrong when adding attendance, are you on the schools internet");;
+            try
+            {
+                model.getOBSAttendance().add(model.addAtendance(student, true, true));
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Something went wrong when adding attendance, are you on the schools internet");
+            }
+            caluclateAttendance(student);
         }
-        caluclateAttendance(student);
+        else
+        {
+            System.out.println("The attendance is already there");
+        }
+
     }
 
     @FXML
     private void handleIsAbsent(ActionEvent event)
     {
-        try
+        String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        boolean isAlreadyThere = false;
+        ArrayList<Attendance> list = student.getAttendance();
+        for (Attendance attendance : list)
         {
-            model.getOBSAttendance().add(model.addAtendance(student, false, false));
+            if (attendance.getDate().equals(timeStamp))
+            {
+                isAlreadyThere = true;
+            }
         }
-        catch (SQLException ex)
+        if (isAlreadyThere = false)
         {
-            System.out.println("Something went wrong when adding attendance, are you on the schools internet");;
+            try
+            {
+                model.getOBSAttendance().add(model.addAtendance(student, false, true));
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Something went wrong when adding attendance, are you on the schools internet");
+            }
+            caluclateAttendance(student);
         }
-        caluclateAttendance(student);
+        else
+        {
+            System.out.println("The attendance is already there");
+        }
     }
 
     public void caluclateAttendance(Student student)
@@ -149,25 +186,26 @@ public class RootLayerController implements Initializable
         else
         {
             model.setAttendanceEdit(lstAttendance.getSelectionModel().getSelectedItem());
-            try
             {
-                Parent root;
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(StudentAttendance.class.getResource("GUI/EditAttendance.fxml"));
-                root = loader.load();
-                Stage stage = new Stage();
-                stage.setTitle("Edit Attendance");
-                stage.setScene(new Scene(root, 500, 200));
-                stage.show();
+                try
+                {
+                    Parent root;
+                    FXMLLoader loader = new FXMLLoader();
+                    loader.setLocation(StudentAttendance.class.getResource("GUI/EditAttendance.fxml"));
+                    root = loader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Edit Attendance");
+                    stage.setScene(new Scene(root, 500, 200));
+                    stage.show();
 
-                EditAttendanceController eaController = loader.getController();
-                eaController.setMsmodel(model);
-                eaController.connectController(this);
-
-            }
-            catch (IOException ex)
-            {
-                Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+                    EditAttendanceController eaController = loader.getController();
+                    eaController.setMsmodel(model);
+                    eaController.connectController(this);
+                }
+                catch (IOException ex)
+                {
+                    System.out.println("Someting went wrong, are you on the schools internet");
+                }
             }
 
         }
