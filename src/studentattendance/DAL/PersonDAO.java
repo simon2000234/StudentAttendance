@@ -44,18 +44,4 @@ public class PersonDAO
 
         return persons;
     }
-
-    public ArrayList<Student> getAllStudents()
-    {
-        MockData md = new MockData();
-        ArrayList<Student> students = new ArrayList<>();
-        students.add(md.createStudentAlex());
-        students.add(md.createStudentIna());
-        students.add(md.createStudentJake());
-        students.add(md.createStudentJohn());
-        students.add(md.createStudentKarl());
-        
-        return students;
-    }
-
 }
