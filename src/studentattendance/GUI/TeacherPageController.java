@@ -215,7 +215,7 @@ public class TeacherPageController implements Initializable
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Student Absence");
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("# of days absent");
+        yAxis.setLabel("% Absence of Each Weekday");
 
         //Building BarChart data
         barChart = new BarChart(xAxis, yAxis);
