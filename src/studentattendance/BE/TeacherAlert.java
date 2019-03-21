@@ -14,12 +14,14 @@ public class TeacherAlert
     private Student student;
     private Attendance nAtendance;
     private Attendance oAttendance;
+    private int id;
 
-    public TeacherAlert(Student student, Attendance nAtendance, Attendance oAttendance)
+    public TeacherAlert(Student student, Attendance nAtendance, Attendance oAttendance, int id)
     {
         this.student = student;
         this.nAtendance = nAtendance;
         this.oAttendance = oAttendance;
+        this.id = id;
     }
     
     public Student getStudent()
@@ -60,6 +62,11 @@ public class TeacherAlert
         }
         return student.getName() + " wants to change his/hers Attendance on " +
                 oAttendance.getDate() + " from " + oIsThere + " to " + nIsThere;
+    }
+
+    public int getId()
+    {
+        return id;
     }
     
     

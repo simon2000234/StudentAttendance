@@ -108,7 +108,7 @@ public class RootLayerController implements Initializable
                 isAlreadyThere = true;
             }
         }
-        if (isAlreadyThere = false)
+        if (isAlreadyThere == false)
         {
             try
             {
@@ -140,7 +140,7 @@ public class RootLayerController implements Initializable
                 isAlreadyThere = true;
             }
         }
-        if (isAlreadyThere = false)
+        if (isAlreadyThere == false)
         {
             try
             {

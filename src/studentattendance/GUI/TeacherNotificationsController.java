@@ -6,12 +6,16 @@
 package studentattendance.GUI;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import studentattendance.BE.Attendance;
 import studentattendance.BE.Teacher;
 import studentattendance.BE.TeacherAlert;
 
@@ -45,11 +49,20 @@ public class TeacherNotificationsController implements Initializable
     {
         if (lstAlerts.getSelectionModel().getSelectedItem() != null)
         {
-            TeacherAlert alert = lstAlerts.getSelectionModel().getSelectedItem();
-            model.getOBSTeacherAlerts().remove(alert);
-            //Insert Mehtord that changes database
-            lblConfirmation.setText(alert.getStudent().getName()
-                    + "'s change is confirmed");
+            try {
+                TeacherAlert alert = lstAlerts.getSelectionModel().getSelectedItem();
+                model.getOBSTeacherAlerts().remove(alert);
+                model.deleteTeacherAlert(alert.getId());
+                Attendance newRealAttendance = new Attendance(alert.getnAtendance().isIsAttending(), alert.getnAtendance().getDate(), alert.getnAtendance().getDayOfWeek(), true, -1);
+                model.createAttendance(newRealAttendance.isIsAttending(), newRealAttendance.getDate(), newRealAttendance.getDayOfWeek(), alert.getStudent().getId(), true);
+                model.deleteAttendance(alert.getoAttendance().getId());
+                model.deleteAttendance(alert.getnAtendance().getId());
+                lblConfirmation.setText(alert.getStudent().getName()
+                        + "'s change is confirmed");
+            }
+            catch (SQLException ex) {
+                System.out.println("Sometinh went wrong with the connection, are you on the schools internet");
+            }
         }
     }
 
@@ -58,11 +71,18 @@ public class TeacherNotificationsController implements Initializable
     {
         if (lstAlerts.getSelectionModel().getSelectedItem() != null)
         {
-            TeacherAlert alert = lstAlerts.getSelectionModel().getSelectedItem();
-            model.getOBSTeacherAlerts().remove(lstAlerts.getSelectionModel().getSelectedItem());
-            //DO NOT insert Mehtord that changes database
-            lblConfirmation.setText(alert.getStudent().getName()
-                    + "'s change is denied");
+            try
+            {
+                TeacherAlert alert = lstAlerts.getSelectionModel().getSelectedItem();
+                model.getOBSTeacherAlerts().remove(lstAlerts.getSelectionModel().getSelectedItem());
+                model.deleteTeacherAlert(alert.getId());
+                lblConfirmation.setText(alert.getStudent().getName()
+                        + "'s change is denied");
+            }
+            catch (SQLException ex)
+            {
+                System.out.println("Sometinh went wrong with the connection, are you on the schools internet");
+            }
         }
     }
 
@@ -70,6 +90,7 @@ public class TeacherNotificationsController implements Initializable
     {
         this.model = model;
         currentUser = (Teacher) model.getCurrentUser();
+        model.getOBSTeacherAlerts().clear();
         model.getOBSTeacherAlerts().addAll(currentUser.getTeacherAlerts());
         lstAlerts.setItems(model.getOBSTeacherAlerts());
         teacherName.setText(currentUser.getName());

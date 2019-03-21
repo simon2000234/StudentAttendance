@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import studentattendance.BE.Attendance;
@@ -42,21 +43,31 @@ public class StudentDAO
         }
     }
 
-    public void createAttendance(boolean isAttending, String date, String dayOfTheWeek, int studentId, boolean isReal) throws SQLException
+    public Attendance createAttendance(boolean isAttending, String date, String dayOfTheWeek, int studentId, boolean isReal) throws SQLException
     {
         String SQL = "INSERT INTO Attendance(isAttending, date, dayOfTheWeek,"
                 + " studentId, isReal) VALUES(?,?,?,?,?)";
-
+        Attendance att = null;
         try (Connection con = DB.getConnection())
         {
-            PreparedStatement st = con.prepareStatement(SQL);
+            PreparedStatement st = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             st.setBoolean(1, isAttending);
             st.setString(2, date);
             st.setString(3, dayOfTheWeek);
             st.setInt(4, studentId);
             st.setBoolean(5, isReal);
             st.executeUpdate();
+
+            ResultSet rs = st.getGeneratedKeys();
+            int id = 0;
+            if (rs.next())
+            {
+                id = rs.getInt(1);
+            }
+            att = new Attendance(isAttending, date, dayOfTheWeek, isReal, id);
+
         }
+        return att;
     }
 
     /**
@@ -147,8 +158,9 @@ public class StudentDAO
                 String Date = rs.getString("date");
                 String DayOfWeek = rs.getString("dayOfTheWeek");
                 boolean isReal = rs.getBoolean("isReal");
+                int id = rs.getInt("Id");
 
-                Attendance att = new Attendance(isAttending, Date, DayOfWeek, isReal);
+                Attendance att = new Attendance(isAttending, Date, DayOfWeek, isReal, id);
 
                 listAtt.add(att);
             }
@@ -166,27 +178,39 @@ public class StudentDAO
             PreparedStatement st = con.prepareStatement(SQL);
             st.setInt(1, attendanceId);
             ResultSet rs = st.executeQuery();
-            while(rs.next())
+            while (rs.next())
             {
-            boolean isAttending;
-            if (rs.getBoolean("isAttending") == true)
-            {
-                isAttending = true;
-            }
-            else
-            {
-                isAttending = false;
+                boolean isAttending;
+                if (rs.getBoolean("isAttending") == true)
+                {
+                    isAttending = true;
+                }
+                else
+                {
+                    isAttending = false;
+                }
+
+                String Date = rs.getString("date");
+                String DayOfWeek = rs.getString("dayOfTheWeek");
+                boolean isReal = rs.getBoolean("isReal");
+                int id = rs.getInt("Id");
+
+                att = new Attendance(isAttending, Date, DayOfWeek, isReal, id);
             }
 
-            String Date = rs.getString("date");
-            String DayOfWeek = rs.getString("dayOfTheWeek");
-            boolean isReal = rs.getBoolean("isReal");
-
-            att = new Attendance(isAttending, Date, DayOfWeek, isReal);
-            }
-            
         }
         return att;
+    }
+
+    public void deleteAttendance(int attId) throws SQLException
+    {
+        String SQL = "DELETE FROM Attendance WHERE Id = ?;";
+        try(Connection con = DB.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setInt(1, attId);
+            st.executeUpdate();
+        }
     }
 
 }

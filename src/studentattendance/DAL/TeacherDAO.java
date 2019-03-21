@@ -122,7 +122,8 @@ public class TeacherDAO
                 int id = rs.getInt("Id");
                 TeacherAlert ta = new TeacherAlert(SD.getStudent(StudentID),
                         SD.getAAttendance(newAttendanceID),
-                        SD.getAAttendance(oldAttendanceID));
+                        SD.getAAttendance(oldAttendanceID),
+                        id);
                 teacherAlerts.add(ta);
             }
 
@@ -156,4 +157,15 @@ public class TeacherDAO
         }
     }
 
+    public void deleteTeacherAlert(int alertId) throws SQLException
+    {
+        String SQL = "DELETE FROM TeacherAlert WHERE Id = ?;";
+        
+        try(Connection con = DB.getConnection())
+        {
+            PreparedStatement st = con.prepareCall(SQL);
+            st.setInt(1, alertId);
+            st.executeUpdate();
+        }
+    }
 }

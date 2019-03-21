@@ -27,11 +27,11 @@ public class SAModel
     private AManager AM;
 
     private Person currentUser;
-    
+
     private ObservableList<Attendance> attendance;
-    
+
     private ObservableList<TeacherAlert> OBSTeacherAlerts;
-    
+
     private Attendance attendanceEdit;
     private ObservableList<Student> students;
     private Student selectedStudent;
@@ -61,8 +61,6 @@ public class SAModel
     {
         return OBSTeacherAlerts;
     }
-    
-    
 
     /**
      * Get the value of currentUser
@@ -118,5 +116,30 @@ public class SAModel
     {
         this.selectedStudent = selectedStudent;
     }
-    
+
+    public Attendance createAttendance(boolean isAttending, String date, String dayOfTheWeek, int studentId, boolean isReal) throws SQLException
+    {
+        return AM.createAttendance(isAttending, date, dayOfTheWeek, studentId, isReal);
+    }
+
+    public void createTeacherAlert(int TeacherId, int StudentId, int OldAttendanceId, int newAttendanceId) throws SQLException
+    {
+        AM.createTeacherAlert(TeacherId, StudentId, OldAttendanceId, newAttendanceId);
+    }
+
+    public ArrayList<TeacherAlert> getTeacherAlert(int teacherID) throws SQLException
+    {
+        return AM.getTeacherAlert(teacherID);
+    }
+
+    public void deleteTeacherAlert(int alertId) throws SQLException
+    {
+        AM.deleteTeacherAlert(alertId);
+    }
+
+    public void deleteAttendance(int attId) throws SQLException
+    {
+        AM.deleteAttendance(attId);
+    }
+
 }

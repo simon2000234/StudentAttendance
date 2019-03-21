@@ -18,13 +18,15 @@ public class Attendance
     private String date;
     private String dayOfWeek;
     private boolean isReal;
+    private int id;
 
-    public Attendance(boolean isAttending, String date, String dayOfWeek, boolean isReal)
+    public Attendance(boolean isAttending, String date, String dayOfWeek, boolean isReal, int id)
     {
         this.isAttending = isAttending;
         this.date = date;
         this.dayOfWeek = dayOfWeek;
         this.isReal = isReal;
+        this.id = id;
     }
 
     public boolean isIsAttending()
@@ -74,6 +76,11 @@ public class Attendance
     public boolean isIsReal()
     {
         return isReal;
+    }
+
+    public int getId()
+    {
+        return id;
     }
     
     
