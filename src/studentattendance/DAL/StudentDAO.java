@@ -146,8 +146,9 @@ public class StudentDAO
 
                 String Date = rs.getString("date");
                 String DayOfWeek = rs.getString("dayOfTheWeek");
+                boolean isReal = rs.getBoolean("isReal");
 
-                Attendance att = new Attendance(isAttending, Date, DayOfWeek);
+                Attendance att = new Attendance(isAttending, Date, DayOfWeek, isReal);
 
                 listAtt.add(att);
             }
@@ -179,8 +180,9 @@ public class StudentDAO
 
             String Date = rs.getString("date");
             String DayOfWeek = rs.getString("dayOfTheWeek");
+            boolean isReal = rs.getBoolean("isReal");
 
-            att = new Attendance(isAttending, Date, DayOfWeek);
+            att = new Attendance(isAttending, Date, DayOfWeek, isReal);
             }
             
         }

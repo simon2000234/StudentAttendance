@@ -68,7 +68,7 @@ public class AManager
         {
             dayOfTheWeek = "Something went wrong";
         }
-        Attendance attendance = new Attendance(isPressent, timeStamp, dayOfTheWeek);
+        Attendance attendance = new Attendance(isPressent, timeStamp, dayOfTheWeek, isReal);
         student.getAttendance().add(attendance);
         studentDAO.createAttendance(isPressent, timeStamp, dayOfTheWeek, student.getId(), isReal);
         return attendance;

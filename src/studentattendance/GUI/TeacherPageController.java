@@ -141,49 +141,54 @@ public class TeacherPageController implements Initializable
         Onsdag = 0;
         Torsdag = 0;
         Fredag = 0;
+        dMandag = 0;
+        dTirsdag = 0;
+        dOnsdag = 0;
+        dTorsdag = 0;
+        dFredag = 0;
 
         for (Attendance attendance : student.getAttendance())
         {
-            if (attendance.getDayOfWeek().contains("Mandag") && attendance.isIsAttending() == false)
+            if (attendance.getDayOfWeek().contains("Mandag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
                 Mandag++;
             }
-            if (attendance.getDayOfWeek().contains("Tirsdag") && attendance.isIsAttending() == false)
+            if (attendance.getDayOfWeek().contains("Tirsdag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
                 Tirsdag++;
             }
-            if (attendance.getDayOfWeek().contains("Onsdag") && attendance.isIsAttending() == false)
+            if (attendance.getDayOfWeek().contains("Onsdag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
                 Onsdag++;
             }
-            if (attendance.getDayOfWeek().contains("Torsdag") && attendance.isIsAttending() == false)
+            if (attendance.getDayOfWeek().contains("Torsdag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
                 Torsdag++;
             }
-            if (attendance.getDayOfWeek().contains("Fredag") && attendance.isIsAttending() == false)
+            if (attendance.getDayOfWeek().contains("Fredag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
                 Fredag++;
             }
         }
         for (Attendance attendance : student.getAttendance())
         {
-            if (attendance.getDayOfWeek().contains("Mandag"))
+            if (attendance.getDayOfWeek().contains("Mandag") && attendance.isIsReal() == true)
             {
                 dMandag++;
             }
-            if (attendance.getDayOfWeek().contains("Tirsdag"))
+            if (attendance.getDayOfWeek().contains("Tirsdag") && attendance.isIsReal() == true)
             {
                 dTirsdag++;
             }
-            if (attendance.getDayOfWeek().contains("Onsdag"))
+            if (attendance.getDayOfWeek().contains("Onsdag") && attendance.isIsReal() == true)
             {
                 dOnsdag++;
             }
-            if (attendance.getDayOfWeek().contains("Torsdag"))
+            if (attendance.getDayOfWeek().contains("Torsdag") && attendance.isIsReal() == true)
             {
                 dTorsdag++;
             }
-            if (attendance.getDayOfWeek().contains("Fredag"))
+            if (attendance.getDayOfWeek().contains("Fredag") && attendance.isIsReal() == true)
             {
                 dFredag++;
             }

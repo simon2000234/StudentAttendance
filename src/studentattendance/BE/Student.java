@@ -5,6 +5,7 @@
  */
 package studentattendance.BE;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -35,16 +36,23 @@ public class Student extends Person
     {
         ArrayList<Attendance> attendanceList = getAttendance();
         double total = attendanceList.size();
+        double notRealAttendance = 0;
+        for (Attendance attendance1 : attendanceList)
+        {
+            if (attendance1.isIsReal() == false)
+            {
+                notRealAttendance--;
+            }
+        }
         double notHere = 0;
         for (Attendance attendance : attendanceList)
         {
-            if (attendance.isIsAttending() == false)
+            if (attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
                 notHere++;
             }
         }
-        double absence = (notHere / total) * 100;
-        
+        double absence = (notHere / (total - notRealAttendance)) * 100;
         return absence;
 
     }

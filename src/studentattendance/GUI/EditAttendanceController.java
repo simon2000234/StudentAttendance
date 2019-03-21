@@ -54,7 +54,7 @@ public class EditAttendanceController implements Initializable
             }
         }
         Attendance newAttendance = new Attendance(true, list.get(editPos).getDate(),
-                list.get(editPos).getDayOfWeek());
+                list.get(editPos).getDayOfWeek(), true);
         student.getAttendance().remove(editPos);
         student.getAttendance().add(newAttendance);
         model.getOBSAttendance().remove(editPos);
@@ -79,7 +79,7 @@ public class EditAttendanceController implements Initializable
             }
         }
         Attendance newAttendance = new Attendance(false, list.get(editPos).getDate(),
-                list.get(editPos).getDayOfWeek());
+                list.get(editPos).getDayOfWeek(), true);
         student.getAttendance().remove(editPos);
         student.getAttendance().add(newAttendance);
         model.getOBSAttendance().remove(editPos);
