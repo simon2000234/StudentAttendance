@@ -5,7 +5,6 @@
  */
 package studentattendance.BE;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -16,13 +15,16 @@ public class Student extends Person
 {
     private ArrayList<Attendance> attendance;
     private double attendanceString;
+    private String viewAttendance;
 
 
     public Student(String name, String username, String password, int id, ArrayList<Attendance> attendance)
     {
         super(name, username, password, id);
         this.attendance = attendance;
-        this.attendanceString = caluclateAttendance();
+        String temp = String.format("%.2f", caluclateAttendance());
+        this.attendanceString = Double.valueOf(temp);
+        
         
     }
 
