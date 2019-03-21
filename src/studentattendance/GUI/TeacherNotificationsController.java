@@ -76,6 +76,7 @@ public class TeacherNotificationsController implements Initializable
                 TeacherAlert alert = lstAlerts.getSelectionModel().getSelectedItem();
                 model.getOBSTeacherAlerts().remove(lstAlerts.getSelectionModel().getSelectedItem());
                 model.deleteTeacherAlert(alert.getId());
+                model.deleteAttendance(alert.getnAtendance().getId());
                 lblConfirmation.setText(alert.getStudent().getName()
                         + "'s change is denied");
             }
