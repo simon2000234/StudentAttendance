@@ -22,8 +22,8 @@ public class Student extends Person
     {
         super(name, username, password, id);
         this.attendance = attendance;
-        String temp = String.format("%.2f", caluclateAttendance());
-        this.attendanceString = Double.valueOf(temp);
+        //String temp = String.format("%.2f", caluclateAttendance());
+        this.attendanceString = caluclateAttendance();
         
         
     }

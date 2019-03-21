@@ -14,6 +14,8 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -67,7 +69,15 @@ public class RootLayerController implements Initializable
         this.model = model;
         lblName.setText(model.getCurrentUser().getName());
         student = (Student) model.getCurrentUser();
-        model.getOBSAttendance().addAll(student.getAttendance());
+        ArrayList<Attendance> att = student.getAttendance();
+        for (int i = 0; i < att.size(); i++)
+        {
+            if(att.get(i).isIsReal() == false)
+            {
+                att.remove(i);
+            }
+        }
+        model.getOBSAttendance().addAll(att);
         lstAttendance.setItems(model.getOBSAttendance());
         caluclateAttendance(student);
     }
