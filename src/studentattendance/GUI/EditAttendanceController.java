@@ -83,6 +83,7 @@ public class EditAttendanceController implements Initializable
             else
             {
                 System.out.println("You have already sent an alert for this attendance chahnge, or the attendance does not change");
+                model.deleteAttendance(newAttendance.getId());
             }
             Stage current = (Stage) currentAttendance.getScene().getWindow();
             current.close();
@@ -133,6 +134,7 @@ public class EditAttendanceController implements Initializable
             else
             {
                 System.out.println("You have already sent an alert for this attendance chahnge, or the attendance does not change");
+                model.deleteAttendance(newAttendance.getId());
             }
             Stage current = (Stage) currentAttendance.getScene().getWindow();
             current.close();
