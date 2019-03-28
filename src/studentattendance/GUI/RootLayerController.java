@@ -108,7 +108,7 @@ public class RootLayerController implements Initializable
     @FXML
     private void handleIsPresent(ActionEvent event)
     {
-        String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        String timeStamp = model.getDate();
         boolean isAlreadyThere = false;
         ArrayList<Attendance> list = student.getAttendance();
         for (Attendance attendance : list)
@@ -140,7 +140,7 @@ public class RootLayerController implements Initializable
     @FXML
     private void handleIsAbsent(ActionEvent event)
     {
-        String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        String timeStamp = model.getDate();
         boolean isAlreadyThere = false;
         ArrayList<Attendance> list = student.getAttendance();
         for (Attendance attendance : list)
