@@ -141,5 +141,23 @@ public class SAModel
     {
         AM.deleteAttendance(attId);
     }
+    
+    /**
+     * A methord for getting the current day in the week
+     * @return String of the current weekday
+     */
+    public String getDayOfTheWeek()
+    {
+        return AM.getDayOfTheWeek();
+    }
+
+    /**
+     * A methord for getting the current date
+     * @return A string of the current date in the format of dd-MM-yyyy
+     */
+    public String getDate()
+    {
+        return AM.getDate();
+    }
 
 }

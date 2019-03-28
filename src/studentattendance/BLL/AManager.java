@@ -27,12 +27,14 @@ public class AManager
     private PersonDAO personDAO;
     private StudentDAO studentDAO;
     private TeacherDAO teacherDAO;
+    private CalenderManager cm;
 
     public AManager()
     {
         personDAO = new PersonDAO();
         studentDAO = new StudentDAO();
         teacherDAO = new TeacherDAO();
+        cm = new CalenderManager();
     }
 
     public ArrayList<Person> getAllPersons() throws SQLException
@@ -42,43 +44,9 @@ public class AManager
 
     public Attendance addAtendance(Student student, boolean isPressent, boolean isReal) throws SQLException
     {
-        String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
-        Calendar c = Calendar.getInstance();
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+        String timeStamp = cm.getDate();
+        String dayOfTheWeek = cm.getDayOfTheWeek();
 
-        String dayOfTheWeek;
-        if (dayOfWeek == 2)
-        {
-            dayOfTheWeek = "Mandag";
-        }
-        else if (dayOfWeek == 3)
-        {
-            dayOfTheWeek = "Tirsdag";
-        }
-        else if (dayOfWeek == 4)
-        {
-            dayOfTheWeek = "Onsdag";
-        }
-        else if (dayOfWeek == 5)
-        {
-            dayOfTheWeek = "Torsdag";
-        }
-        else if (dayOfWeek == 6)
-        {
-            dayOfTheWeek = "Fredag";
-        }
-        else if (dayOfWeek == 7)
-        {
-            dayOfTheWeek = "Lørdag";
-        }
-        else if (dayOfWeek == 1)
-        {
-            dayOfTheWeek = "Søndag";
-        }
-        else
-        {
-            dayOfTheWeek = "Something went wrong";
-        }
         Attendance attendance = new Attendance(isPressent, timeStamp, dayOfTheWeek, isReal, -1);
         student.getAttendance().add(attendance);
         studentDAO.createAttendance(isPressent, timeStamp, dayOfTheWeek, student.getId(), isReal);
@@ -114,4 +82,23 @@ public class AManager
     {
         studentDAO.deleteAttendance(attId);
     }
+
+    /**
+     * A methord for getting the current day in the week
+     * @return String of the current weekday
+     */
+    public String getDayOfTheWeek()
+    {
+        return cm.getDayOfTheWeek();
+    }
+
+    /**
+     * A methord for getting the current date
+     * @return A string of the current date in the format of dd-MM-yyyy
+     */
+    public String getDate()
+    {
+        return cm.getDate();
+    }
+
 }
