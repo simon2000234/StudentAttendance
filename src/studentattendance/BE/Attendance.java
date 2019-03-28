@@ -6,12 +6,13 @@
 package studentattendance.BE;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 /**
  *
  * @author Melchertsen
  */
-public class Attendance
+public class Attendance implements Comparable<Attendance>
 {
 
     private boolean isAttending;
@@ -82,7 +83,23 @@ public class Attendance
     {
         return id;
     }
-    
-    
+
+    @Override
+    public int compareTo(Attendance o)
+    {
+        int c;
+        String monthTHIS = Character.toString(this.date.charAt(3)) + Character.toString(this.date.charAt(4));
+        String monthOTHER = Character.toString(o.date.charAt(3)) + Character.toString(o.date.charAt(4));
+        c = monthTHIS.compareTo(monthOTHER);
+        if (c == 0)
+        {
+            return this.date.compareTo(o.date);
+        }
+        if (c != 0)
+        {
+            return c;
+        }
+        return this.date.compareTo(o.date);
+    }
 
 }

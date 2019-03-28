@@ -5,8 +5,7 @@
  */
 package studentattendance.BLL;
 
-import java.util.ArrayList;
-import studentattendance.BE.Person;
+import studentattendance.GUI.RootLayerController;
 
 /**
  *
@@ -17,6 +16,9 @@ public class Tester
 
     public static void main(String[] args)
     {
+        RootLayerController rlc = new RootLayerController();
+        rlc.prevMonth();
+        rlc.nextMonth();
     
     }
 }

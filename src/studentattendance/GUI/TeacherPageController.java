@@ -193,11 +193,11 @@ public class TeacherPageController implements Initializable
                 dFredag++;
             }
         }
-        Mandag = Mandag/dMandag;
-        Tirsdag = Tirsdag/dTirsdag;
-        Onsdag = Onsdag/dOnsdag;
-        Torsdag = Torsdag/dTorsdag;
-        Fredag = Fredag/dFredag;
+        Mandag = (Mandag/dMandag)*100;
+        Tirsdag = (Tirsdag/dTirsdag)*100;
+        Onsdag = (Onsdag/dOnsdag)*100;
+        Torsdag = (Torsdag/dTorsdag)*100;
+        Fredag = (Fredag/dFredag)*100;
 
     }
 

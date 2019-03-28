@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +24,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -56,12 +60,25 @@ public class RootLayerController implements Initializable
     @FXML
     private Label lblHiden;
 
+    private String today;
+    private String currentMonth;
+    @FXML
+    private Button btnPrevMonth;
+    @FXML
+    private Button btnNextMonth;
+    @FXML
+    private Label lblShowMonth;
+    @FXML
+    private Label lblEmptyListview;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
+        today = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        currentMonth = Character.toString(today.charAt(3)) + Character.toString(today.charAt(4));
     }
 
     public void setMsmodel(SAModel model)
@@ -72,14 +89,16 @@ public class RootLayerController implements Initializable
         ArrayList<Attendance> att = student.getAttendance();
         for (int i = 0; i < att.size(); i++)
         {
-            if(att.get(i).isIsReal() == false)
+            if (att.get(i).isIsReal() == false)
             {
                 att.remove(i);
             }
         }
         model.getOBSAttendance().addAll(att);
+        Collections.sort(model.getOBSAttendance());
         lstAttendance.setItems(model.getOBSAttendance());
         caluclateAttendance(student);
+
     }
 
     @FXML
@@ -98,8 +117,7 @@ public class RootLayerController implements Initializable
 
             Stage current = (Stage) lblName.getScene().getWindow();
             current.close();
-        }
-        catch (IOException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(RootLayerController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,14 +141,12 @@ public class RootLayerController implements Initializable
             try
             {
                 model.getOBSAttendance().add(model.addAtendance(student, true, true));
-            }
-            catch (SQLException ex)
+            } catch (SQLException ex)
             {
                 System.out.println("Something went wrong when adding attendance, are you on the schools internet");
             }
             caluclateAttendance(student);
-        }
-        else
+        } else
         {
             System.out.println("The attendance is already there");
         }
@@ -155,14 +171,12 @@ public class RootLayerController implements Initializable
             try
             {
                 model.getOBSAttendance().add(model.addAtendance(student, false, true));
-            }
-            catch (SQLException ex)
+            } catch (SQLException ex)
             {
                 System.out.println("Something went wrong when adding attendance, are you on the schools internet");
             }
             caluclateAttendance(student);
-        }
-        else
+        } else
         {
             System.out.println("The attendance is already there");
         }
@@ -192,8 +206,7 @@ public class RootLayerController implements Initializable
         if (lstAttendance.getSelectionModel().getSelectedItem() == null)
         {
             lblHiden.setText("Please select a day to edit");
-        }
-        else
+        } else
         {
             model.setAttendanceEdit(lstAttendance.getSelectionModel().getSelectedItem());
             {
@@ -211,14 +224,160 @@ public class RootLayerController implements Initializable
                     EditAttendanceController eaController = loader.getController();
                     eaController.setMsmodel(model);
                     eaController.connectController(this);
-                }
-                catch (IOException ex)
+                } catch (IOException ex)
                 {
                     System.out.println("Someting went wrong, are you on the schools internet");
                 }
             }
 
         }
+    }
+
+    public void prevMonth()
+    {
+        //Go to previous month
+        int prev = Integer.valueOf(currentMonth);
+        if ((prev - 1) < 10)
+        {
+            prev = prev - 1;
+            if (prev < 1)
+            {
+                Alert alertError = new Alert(Alert.AlertType.ERROR, "No attendance data from previous years", ButtonType.CLOSE);
+                alertError.showAndWait();
+            } else
+            {
+                currentMonth = "0" + prev;
+            }
+        } else if ((prev - 1) >= 10)
+        {
+            prev = prev - 1;
+            currentMonth = "" + prev;
+        }
+    }
+
+    public void nextMonth()
+    {
+        //Go to next month
+        int next = Integer.valueOf(currentMonth);
+        if ((next + 1) < 10)
+        {
+            next++;
+            currentMonth = "0" + next;
+        } else if ((next + 1) >= 10)
+        {
+            next = next + 1;
+            if (next > 12)
+            {
+                Alert alertError = new Alert(Alert.AlertType.ERROR, "No attendance data from next year", ButtonType.CLOSE);
+                alertError.showAndWait();
+            } else
+            {
+                currentMonth = "" + next;
+            }
+        }
+    }
+
+    public ObservableList<Attendance> monthlyAttendanceFilter()
+    {
+        List<Attendance> temp = new ArrayList<>();
+        ObservableList<Attendance> filtered;
+        filtered = FXCollections.observableArrayList();
+        String attendanceMonth;
+        for (Attendance att : student.getAttendance())
+        {
+            attendanceMonth = Character.toString(att.getDate().charAt(3)) + Character.toString(att.getDate().charAt(4));
+            if (att.isIsReal() == true && attendanceMonth.equals(currentMonth))
+            {
+                filtered.add(att);
+            }
+
+        }
+
+        return filtered;
+
+    }
+
+    @FXML
+    private void handlePrevMonth(ActionEvent event)
+    {
+        prevMonth();
+        lstAttendance.setItems(monthlyAttendanceFilter());
+        if (monthlyAttendanceFilter().isEmpty())
+        {
+            lblEmptyListview.setText("No attendance for this month..");
+        } else
+        {
+            lblEmptyListview.setText("");
+        }
+        lblShowMonth.setText(simpleCurrentMonthTranslate(currentMonth));
+    }
+
+    @FXML
+    private void handleNextMonth(ActionEvent event)
+    {
+        nextMonth();
+        lstAttendance.setItems(monthlyAttendanceFilter());
+        if (monthlyAttendanceFilter().isEmpty())
+        {
+            lblEmptyListview.setText("No attendance for this month..");
+        } else
+        {
+            lblEmptyListview.setText("");
+        }
+        lblShowMonth.setText(simpleCurrentMonthTranslate(currentMonth));
+    }
+
+    public String simpleCurrentMonthTranslate(String currentmonth)
+    {
+        if (currentmonth.equals("01"))
+        {
+            return "January";
+        }
+        if (currentmonth.equals("02"))
+        {
+            return "February";
+        }
+        if (currentmonth.equals("03"))
+        {
+            return "March";
+        }
+        if (currentmonth.equals("04"))
+        {
+            return "April";
+        }
+        if (currentmonth.equals("05"))
+        {
+            return "May";
+        }
+        if (currentmonth.equals("06"))
+        {
+            return "June";
+        }
+        if (currentmonth.equals("07"))
+        {
+            return "July";
+        }
+        if (currentmonth.equals("08"))
+        {
+            return "August";
+        }
+        if (currentmonth.equals("09"))
+        {
+            return "September";
+        }
+        if (currentmonth.equals("10"))
+        {
+            return "October";
+        }
+        if (currentmonth.equals("11"))
+        {
+            return "November";
+        }
+        if (currentmonth.equals("12"))
+        {
+            return "December";
+        }
+        return "";
     }
 
 }
