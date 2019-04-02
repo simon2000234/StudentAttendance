@@ -20,6 +20,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -61,10 +62,11 @@ public class TeacherPageController implements Initializable
     private double dOnsdag;
     private double dTorsdag;
     private double dFredag;
-    @FXML
     private BarChart<?, ?> barChart;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private Button lblEditStudent;
 
     /**
      * Initializes the controller class.
@@ -234,6 +236,31 @@ public class TeacherPageController implements Initializable
 
         return barChart;
 
+    }
+
+    @FXML
+    private void handleEditStudentAttendance(ActionEvent event)
+    {
+        try
+        {
+            
+            
+            Parent root;
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(StudentAttendance.class.getResource("GUI/TeacherEditAttendance.fxml"));
+            root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Edit Student Attendance");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            TeacherEditAttendanceController teaController = loader.getController();
+            teaController.setModel(model);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TeacherPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

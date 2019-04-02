@@ -5,6 +5,7 @@
  */
 package studentattendance.DAL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -149,8 +150,7 @@ public class StudentDAO
                 if (rs.getBoolean("isAttending") == true)
                 {
                     isAttending = true;
-                }
-                else
+                } else
                 {
                     isAttending = false;
                 }
@@ -184,8 +184,7 @@ public class StudentDAO
                 if (rs.getBoolean("isAttending") == true)
                 {
                     isAttending = true;
-                }
-                else
+                } else
                 {
                     isAttending = false;
                 }
@@ -205,12 +204,25 @@ public class StudentDAO
     public void deleteAttendance(int attId) throws SQLException
     {
         String SQL = "DELETE FROM Attendance WHERE Id = ?;";
-        try(Connection con = DB.getConnection())
+        try (Connection con = DB.getConnection())
         {
             PreparedStatement st = con.prepareStatement(SQL);
             st.setInt(1, attId);
             st.executeUpdate();
         }
+    }
+
+    public void teacherEditAttendance(Attendance attendance, boolean isAttending, Student student) throws SQLServerException, SQLException
+    {
+        String SQL = "UPDATE Attendance SET isAttending = ? WHERE id = "+attendance.getId();
+        try (Connection con = DB.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setBoolean(1, isAttending);
+            st.executeUpdate();
+        }
+        
+        student.setAttendance(getAllAttendance(student.getId()));
     }
 
 }

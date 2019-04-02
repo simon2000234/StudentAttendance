@@ -85,6 +85,7 @@ public class AManager
 
     /**
      * A methord for getting the current day in the week
+     *
      * @return String of the current weekday
      */
     public String getDayOfTheWeek()
@@ -94,11 +95,17 @@ public class AManager
 
     /**
      * A methord for getting the current date
+     *
      * @return A string of the current date in the format of dd-MM-yyyy
      */
     public String getDate()
     {
         return cm.getDate();
+    }
+
+    public void teacherEditAttendance(Attendance attendance, boolean isAttending, Student student) throws SQLException
+    {
+        studentDAO.teacherEditAttendance(attendance, isAttending, student);
     }
 
 }

@@ -27,6 +27,7 @@
          <children>
             <Label fx:id="lblTeacherName" layoutX="14.0" layoutY="14.0" text="Teacher name" />
             <Button layoutX="15.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleCheckAlerts" text="Alerts" />
+            <Button fx:id="lblEditStudent" layoutX="4.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleEditStudentAttendance" text="Edit Student" />
          </children>
       </AnchorPane>
    </left>

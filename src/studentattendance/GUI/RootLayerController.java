@@ -79,6 +79,8 @@ public class RootLayerController implements Initializable
     {
         today = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
         currentMonth = Character.toString(today.charAt(3)) + Character.toString(today.charAt(4));
+        lblShowMonth.setText(simpleCurrentMonthTranslate(currentMonth));
+
     }
 
     public void setMsmodel(SAModel model)
@@ -96,7 +98,11 @@ public class RootLayerController implements Initializable
         }
         model.getOBSAttendance().addAll(att);
         Collections.sort(model.getOBSAttendance());
-        lstAttendance.setItems(model.getOBSAttendance());
+        lstAttendance.setItems(monthlyAttendanceFilter());
+        if (monthlyAttendanceFilter().isEmpty())
+        {
+            lblEmptyListview.setText("No attendance for this month..");
+        }
         caluclateAttendance(student);
 
     }
@@ -146,6 +152,14 @@ public class RootLayerController implements Initializable
                 System.out.println("Something went wrong when adding attendance, are you on the schools internet");
             }
             caluclateAttendance(student);
+            lstAttendance.setItems(monthlyAttendanceFilter());
+            if (monthlyAttendanceFilter().isEmpty())
+            {
+                lblEmptyListview.setText("No attendance for this month..");
+            } else
+            {
+                lblEmptyListview.setText("");
+            }
         } else
         {
             System.out.println("The attendance is already there");
@@ -176,6 +190,14 @@ public class RootLayerController implements Initializable
                 System.out.println("Something went wrong when adding attendance, are you on the schools internet");
             }
             caluclateAttendance(student);
+            lstAttendance.setItems(monthlyAttendanceFilter());
+            if (monthlyAttendanceFilter().isEmpty())
+            {
+                lblEmptyListview.setText("No attendance for this month..");
+            } else
+            {
+                lblEmptyListview.setText("");
+            }
         } else
         {
             System.out.println("The attendance is already there");

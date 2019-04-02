@@ -51,7 +51,7 @@
             <Button fx:id="btnPrevMonth" layoutX="14.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handlePrevMonth" text="&lt;&lt;" />
             <Button fx:id="btnNextMonth" layoutX="225.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleNextMonth" text="&gt;&gt;" />
             <Label fx:id="lblShowMonth" layoutX="131.0" layoutY="4.0" text="month" AnchorPane.topAnchor="4.0" />
-            <Label fx:id="lblEmptyListview" layoutX="131.0" layoutY="43.0" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="45.0" />
+            <Label fx:id="lblEmptyListview" layoutX="131.0" layoutY="43.0" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="45.0" />
          </children>
          <BorderPane.margin>
             <Insets />
