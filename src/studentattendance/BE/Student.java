@@ -33,6 +33,12 @@ public class Student extends Person
     {
         return attendance;
     }
+
+    public void setAttendance(ArrayList<Attendance> attendance)
+    {
+        this.attendance = attendance;
+    }
+    
     
     public double caluclateAttendance()
     {

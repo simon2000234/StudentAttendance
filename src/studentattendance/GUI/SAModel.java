@@ -45,8 +45,7 @@ public class SAModel
         try
         {
             students.addAll(AM.getAllStudents());
-        }
-        catch (SQLException ex)
+        } catch (SQLException ex)
         {
             System.out.println("Someting went wrong with getting alle the students, maybe internet is gone");
         }
@@ -141,9 +140,10 @@ public class SAModel
     {
         AM.deleteAttendance(attId);
     }
-    
+
     /**
      * A methord for getting the current day in the week
+     *
      * @return String of the current weekday
      */
     public String getDayOfTheWeek()
@@ -153,11 +153,25 @@ public class SAModel
 
     /**
      * A methord for getting the current date
+     *
      * @return A string of the current date in the format of dd-MM-yyyy
      */
     public String getDate()
     {
         return AM.getDate();
+    }
+
+    public void teacherEditAttendance(Attendance attendance, boolean isAttending, Student student) throws SQLException
+    {
+        AM.teacherEditAttendance(attendance, isAttending, student);
+    }
+
+    public void updateStudents() throws SQLException
+    {
+        ObservableList<Student> temp;
+        temp = FXCollections.observableArrayList();
+        temp.addAll(AM.getAllStudents());
+        students = temp;
     }
 
 }
