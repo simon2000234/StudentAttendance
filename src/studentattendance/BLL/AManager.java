@@ -6,13 +6,12 @@
 package studentattendance.BLL;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import studentattendance.BE.Attendance;
 import studentattendance.BE.Person;
 import studentattendance.BE.Student;
 import studentattendance.BE.TeacherAlert;
+import studentattendance.DAL.DataAccessFacade;
 import studentattendance.DAL.PersonDAO;
 import studentattendance.DAL.StudentDAO;
 import studentattendance.DAL.TeacherDAO;
@@ -23,23 +22,18 @@ import studentattendance.DAL.TeacherDAO;
  */
 public class AManager
 {
-
-    private PersonDAO personDAO;
-    private StudentDAO studentDAO;
-    private TeacherDAO teacherDAO;
+    private DataAccessFacade daFacade;
     private CalenderManager cm;
 
     public AManager()
     {
-        personDAO = new PersonDAO();
-        studentDAO = new StudentDAO();
-        teacherDAO = new TeacherDAO();
+        daFacade = new DataAccessFacade();
         cm = new CalenderManager();
     }
 
     public ArrayList<Person> getAllPersons() throws SQLException
     {
-        return personDAO.getAllPersons();
+        return daFacade.getAllPersons();
     }
 
     public Attendance addAtendance(Student student, boolean isPressent, boolean isReal) throws SQLException
@@ -49,38 +43,38 @@ public class AManager
 
         Attendance attendance = new Attendance(isPressent, timeStamp, dayOfTheWeek, isReal, -1);
         student.getAttendance().add(attendance);
-        studentDAO.createAttendance(isPressent, timeStamp, dayOfTheWeek, student.getId(), isReal);
+        daFacade.addAtendance(student, isPressent, isReal, timeStamp, dayOfTheWeek);
         return attendance;
     }
 
     public ArrayList<Student> getAllStudents() throws SQLException
     {
-        return studentDAO.getAllStudents();
+        return daFacade.getAllStudents();
     }
 
     public Attendance createAttendance(boolean isAttending, String date, String dayOfTheWeek, int studentId, boolean isReal) throws SQLException
     {
-        return studentDAO.createAttendance(isAttending, date, dayOfTheWeek, studentId, isReal);
+        return daFacade.createAttendance(isAttending, date, dayOfTheWeek, studentId, isReal);
     }
 
     public void createTeacherAlert(int TeacherId, int StudentId, int OldAttendanceId, int newAttendanceId) throws SQLException
     {
-        teacherDAO.createTeacherAlert(TeacherId, StudentId, OldAttendanceId, newAttendanceId);
+        daFacade.createTeacherAlert(TeacherId, StudentId, OldAttendanceId, newAttendanceId);
     }
 
     public ArrayList<TeacherAlert> getTeacherAlert(int teacherID) throws SQLException
     {
-        return teacherDAO.getTeacherAlert(teacherID);
+        return daFacade.getTeacherAlert(teacherID);
     }
 
     public void deleteTeacherAlert(int alertId) throws SQLException
     {
-        teacherDAO.deleteTeacherAlert(alertId);
+        daFacade.deleteTeacherAlert(alertId);
     }
 
     public void deleteAttendance(int attId) throws SQLException
     {
-        studentDAO.deleteAttendance(attId);
+        daFacade.deleteAttendance(attId);
     }
 
     /**
@@ -105,7 +99,7 @@ public class AManager
 
     public void teacherEditAttendance(Attendance attendance, boolean isAttending, Student student) throws SQLException
     {
-        studentDAO.teacherEditAttendance(attendance, isAttending, student);
+        daFacade.teacherEditAttendance(attendance, isAttending, student);
     }
 
 }
