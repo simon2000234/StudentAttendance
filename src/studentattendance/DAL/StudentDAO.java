@@ -211,6 +211,17 @@ public class StudentDAO
             st.executeUpdate();
         }
     }
+    
+    public void deleteStudent(int studentId) throws SQLException
+    {
+        String SQL = "DELETE FROM Sutdent WHERE id = ?;";
+        try(Connection con = DB.getConnection())
+        {
+            PreparedStatement st = con.prepareStatement(SQL);
+            st.setInt(1, studentId);
+            st.executeUpdate();
+        }
+    }
 
     public void teacherEditAttendance(Attendance attendance, boolean isAttending, Student student) throws SQLServerException, SQLException
     {
