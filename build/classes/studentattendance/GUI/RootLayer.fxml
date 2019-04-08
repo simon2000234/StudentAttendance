@@ -45,9 +45,17 @@
       </AnchorPane>
    </left>
    <right>
-      <ListView fx:id="lstAttendance" prefHeight="375.0" prefWidth="395.0" styleClass="column-header-background" stylesheets="@OriginalTheme.css" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="306.0" BorderPane.alignment="CENTER">
+         <children>
+            <ListView fx:id="lstAttendance" layoutX="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="303.0" styleClass="column-header-background" stylesheets="@OriginalTheme.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="30.0" />
+            <Button fx:id="btnPrevMonth" layoutX="14.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handlePrevMonth" text="&lt;&lt;" />
+            <Button fx:id="btnNextMonth" layoutX="225.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleNextMonth" text="&gt;&gt;" />
+            <Label fx:id="lblShowMonth" layoutX="131.0" layoutY="4.0" text="month" AnchorPane.topAnchor="4.0" />
+            <Label fx:id="lblEmptyListview" layoutX="131.0" layoutY="43.0" textAlignment="CENTER" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="45.0" />
+         </children>
          <BorderPane.margin>
             <Insets />
-         </BorderPane.margin></ListView>
+         </BorderPane.margin>
+      </AnchorPane>
    </right>
 </BorderPane>

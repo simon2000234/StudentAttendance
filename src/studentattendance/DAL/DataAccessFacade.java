@@ -37,7 +37,6 @@ public class DataAccessFacade
     public Attendance addAtendance(Student student, boolean isPressent, boolean isReal,String timeStamp, String dayOfTheWeek) throws SQLException
     {
         Attendance attendance = new Attendance(isPressent, timeStamp, dayOfTheWeek, isReal, -1);
-        student.getAttendance().add(attendance);
         sDAO.createAttendance(isPressent, timeStamp, dayOfTheWeek, student.getId(), isReal);
         return attendance;
     }
