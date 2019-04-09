@@ -102,4 +102,28 @@ public class Attendance implements Comparable<Attendance>
         return this.date.compareTo(o.date);
     }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (getClass() != obj.getClass())
+        {
+            return false;
+        }
+        final Attendance other = (Attendance) obj;
+        if (this.id != other.id)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+
 }
