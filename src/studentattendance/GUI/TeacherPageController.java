@@ -51,11 +51,11 @@ public class TeacherPageController implements Initializable
     private TableColumn<Student, String> columnStudentName;
     @FXML
     private TableColumn<Student, Double> columnAttendance;
-    private double Mandag;
-    private double Tirsdag;
-    private double Onsdag;
-    private double Torsdag;
-    private double Fredag;
+    private double mandag;
+    private double tirsdag;
+    private double onsdag;
+    private double torsdag;
+    private double fredag;
     // d = divide;
     private double dMandag;
     private double dTirsdag;
@@ -138,11 +138,11 @@ public class TeacherPageController implements Initializable
 
     public void absentDays(Student student)
     {
-        Mandag = 0;
-        Tirsdag = 0;
-        Onsdag = 0;
-        Torsdag = 0;
-        Fredag = 0;
+        mandag = 0;
+        tirsdag = 0;
+        onsdag = 0;
+        torsdag = 0;
+        fredag = 0;
         dMandag = 0;
         dTirsdag = 0;
         dOnsdag = 0;
@@ -153,23 +153,23 @@ public class TeacherPageController implements Initializable
         {
             if (attendance.getDayOfWeek().contains("Mandag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
-                Mandag++;
+                mandag++;
             }
             if (attendance.getDayOfWeek().contains("Tirsdag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
-                Tirsdag++;
+                tirsdag++;
             }
             if (attendance.getDayOfWeek().contains("Onsdag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
-                Onsdag++;
+                onsdag++;
             }
             if (attendance.getDayOfWeek().contains("Torsdag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
-                Torsdag++;
+                torsdag++;
             }
             if (attendance.getDayOfWeek().contains("Fredag") && attendance.isIsAttending() == false && attendance.isIsReal() == true)
             {
-                Fredag++;
+                fredag++;
             }
         }
         for (Attendance attendance : student.getAttendance())
@@ -195,11 +195,11 @@ public class TeacherPageController implements Initializable
                 dFredag++;
             }
         }
-        Mandag = (Mandag/dMandag)*100;
-        Tirsdag = (Tirsdag/dTirsdag)*100;
-        Onsdag = (Onsdag/dOnsdag)*100;
-        Torsdag = (Torsdag/dTorsdag)*100;
-        Fredag = (Fredag/dFredag)*100;
+        mandag = (mandag/dMandag)*100;
+        tirsdag = (tirsdag/dTirsdag)*100;
+        onsdag = (onsdag/dOnsdag)*100;
+        torsdag = (torsdag/dTorsdag)*100;
+        fredag = (fredag/dFredag)*100;
 
     }
 
@@ -225,11 +225,11 @@ public class TeacherPageController implements Initializable
         XYChart.Series dataset = new XYChart.Series();
 //        dataset.setName("Overview of days most absent");
 
-        dataset.getData().add(new XYChart.Data("Mandag", Mandag));
-        dataset.getData().add(new XYChart.Data("Tirsdag", Tirsdag));
-        dataset.getData().add(new XYChart.Data("Onsdag", Onsdag));
-        dataset.getData().add(new XYChart.Data("Torsdag", Torsdag));
-        dataset.getData().add(new XYChart.Data("Fredag", Fredag));
+        dataset.getData().add(new XYChart.Data("Mandag", mandag));
+        dataset.getData().add(new XYChart.Data("Tirsdag", tirsdag));
+        dataset.getData().add(new XYChart.Data("Onsdag", onsdag));
+        dataset.getData().add(new XYChart.Data("Torsdag", torsdag));
+        dataset.getData().add(new XYChart.Data("Fredag", fredag));
 
         //Add dataset to chart
         barChart.getData().add(dataset);

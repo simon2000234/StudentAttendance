@@ -5,11 +5,7 @@
  */
 package studentattendance.DAL;
 
-import com.oracle.net.Sdp;
-import java.util.ArrayList;
 import java.util.List;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import studentattendance.BE.Attendance;
@@ -22,22 +18,8 @@ import studentattendance.BE.Student;
 public class StudentDAOTest
 {
 
-    public StudentDAOTest()
-    {
-    }
-
-    @BeforeClass
-    public static void setUpClass()
-    {
-    }
-
-    @AfterClass
-    public static void tearDownClass()
-    {
-    }
-
     /**
-     * Test of createSutdent method, of class StudentDAO.
+     * Test of all methods directly realted to the students themselves.
      */
     @Test
     public void testCreateSutdentAndGetStudentAndGetAllStudentsAndDeleteStudent() throws Exception
@@ -61,7 +43,7 @@ public class StudentDAOTest
     }
 
     /**
-     * Test of createAttendance method, of class StudentDAO.
+     * Test of all methods directly realted to the attendance of students.
      */
     @Test
     public void testCreateAttendanceAndGetAllAttendanceAndDeleteAttendance() throws Exception
@@ -80,6 +62,5 @@ public class StudentDAOTest
         }
         assertEquals(attendance.getDate(), "fuckOff");
         sd.deleteAttendance(attendance.getId());
-
     }
 }

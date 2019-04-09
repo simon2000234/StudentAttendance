@@ -49,8 +49,6 @@ public class FXMLDocumentController implements Initializable
     @FXML
     private void handleOkBtn(ActionEvent event)
     {
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
         if (isStudent() == true)
         {
             try
@@ -76,7 +74,7 @@ public class FXMLDocumentController implements Initializable
                 Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        else if (isTeacher())
+        else if (isTeacher() == true)
         {
             try
             {
@@ -111,12 +109,11 @@ public class FXMLDocumentController implements Initializable
 
     public boolean isTeacher()
     {
-        AManager am = new AManager();
         boolean isTeacher = false;
         ArrayList<Person> list;
         try
         {
-            list = am.getAllPersons();
+            list = model.getAllPersons();
             for (Person person : list)
             {
                 if (txtUsername.getText().equals(person.getUsername())
@@ -138,12 +135,11 @@ public class FXMLDocumentController implements Initializable
 
     public boolean isStudent()
     {
-        AManager am = new AManager();
         boolean isStudent = false;
         ArrayList<Person> list;
         try
         {
-            list = am.getAllPersons();
+            list = model.getAllPersons();
             for (Person person : list)
             {
                 if (txtUsername.getText().equals(person.getUsername())

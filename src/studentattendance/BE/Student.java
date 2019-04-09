@@ -15,14 +15,12 @@ public class Student extends Person
 {
     private ArrayList<Attendance> attendance;
     private double attendanceString;
-    private String viewAttendance;
 
 
     public Student(String name, String username, String password, int id, ArrayList<Attendance> attendance)
     {
         super(name, username, password, id);
         this.attendance = attendance;
-        //String temp = String.format("%.2f", caluclateAttendance());
         this.attendanceString = caluclateAttendance();
         
         

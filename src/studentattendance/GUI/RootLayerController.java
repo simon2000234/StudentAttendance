@@ -258,7 +258,7 @@ public class RootLayerController implements Initializable
     public void prevMonth()
     {
         //Go to previous month
-        int prev = Integer.valueOf(currentMonth);
+        int prev = Integer.parseInt(currentMonth);
         if ((prev - 1) < 10)
         {
             prev = prev - 1;
@@ -280,7 +280,7 @@ public class RootLayerController implements Initializable
     public void nextMonth()
     {
         //Go to next month
-        int next = Integer.valueOf(currentMonth);
+        int next = Integer.parseInt(currentMonth);
         if ((next + 1) < 10)
         {
             next++;
@@ -301,7 +301,6 @@ public class RootLayerController implements Initializable
 
     public ObservableList<Attendance> monthlyAttendanceFilter()
     {
-        List<Attendance> temp = new ArrayList<>();
         ObservableList<Attendance> filtered;
         filtered = FXCollections.observableArrayList();
         String attendanceMonth;

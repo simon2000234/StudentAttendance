@@ -34,7 +34,7 @@ public class TeacherDAO
     /**
      * Creates a teacher in the datebase
      */
-    public void CreateTeacher(String Username, String Password, String Name) throws SQLException
+    public void createTeacher(String Username, String Password, String Name) throws SQLException
     {
         String SQL = "INSERT INTO Teacher(Username, Password, Name) VALUES(?,?,?);";
 
@@ -45,6 +45,7 @@ public class TeacherDAO
             st.setString(2, Password);
             st.setString(3, Name);
             st.executeUpdate();
+            st.close();
 
         }
     }
@@ -73,6 +74,7 @@ public class TeacherDAO
                 Teacher teacher = new Teacher(getTeacherAlert(ID), Name, Username, Password, ID);
                 allTeachers.add(teacher);
             }
+            st.close();
         }
         return allTeachers;
     }
@@ -90,6 +92,7 @@ public class TeacherDAO
             String Password = rs.getString("Password");
             String Name = rs.getString("Name");
             teacher = new Teacher(getTeacherAlert(teacherID), Name, Username, Password, teacherID);
+            st.close();
         }
         if(teacher == null)
         {
@@ -126,7 +129,7 @@ public class TeacherDAO
                         id);
                 teacherAlerts.add(ta);
             }
-
+            st.close();
         }
         return teacherAlerts;
     }
@@ -154,6 +157,7 @@ public class TeacherDAO
             st.setInt(3, OldAttendanceId);
             st.setInt(4, newAttendanceId);
             st.executeUpdate();
+            st.close();
         }
     }
 
@@ -166,6 +170,7 @@ public class TeacherDAO
             PreparedStatement st = con.prepareCall(SQL);
             st.setInt(1, alertId);
             st.executeUpdate();
+            st.close();
         }
     }
 }

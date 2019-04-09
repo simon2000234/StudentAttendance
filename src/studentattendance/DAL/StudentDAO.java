@@ -41,6 +41,7 @@ public class StudentDAO
             st.setString(2, Password);
             st.setString(3, Name);
             st.executeUpdate();
+            st.close();
         }
     }
 
@@ -66,6 +67,7 @@ public class StudentDAO
                 id = rs.getInt(1);
             }
             att = new Attendance(isAttending, date, dayOfTheWeek, isReal, id);
+            st.close();
 
         }
         return att;
@@ -96,12 +98,14 @@ public class StudentDAO
                 ArrayList<Attendance> ListAttendance = getAllAttendance(StudentID);
                 student = new Student(Name, Username, Password, StudentID, ListAttendance);
             }
+            st.close();
         }
 
         if (student == null)
         {
             System.out.println("The Student does not exist, or internet problem");
         }
+        
         return student;
     }
 
@@ -124,6 +128,7 @@ public class StudentDAO
                 Student student = new Student(Name, Username, Password, Id, ListAttendance);
                 allStudents.add(student);
             }
+            st.close();
         }
         return allStudents;
     }
@@ -164,7 +169,7 @@ public class StudentDAO
 
                 listAtt.add(att);
             }
-
+            st.close();
         }
         return listAtt;
     }
@@ -196,7 +201,7 @@ public class StudentDAO
 
                 att = new Attendance(isAttending, Date, DayOfWeek, isReal, id);
             }
-
+            st.close();
         }
         return att;
     }
@@ -209,6 +214,7 @@ public class StudentDAO
             PreparedStatement st = con.prepareStatement(SQL);
             st.setInt(1, attId);
             st.executeUpdate();
+            st.close();
         }
     }
     
@@ -220,6 +226,7 @@ public class StudentDAO
             PreparedStatement st = con.prepareStatement(SQL);
             st.setInt(1, studentId);
             st.executeUpdate();
+            st.close();
         }
     }
 
@@ -231,6 +238,7 @@ public class StudentDAO
             PreparedStatement st = con.prepareStatement(SQL);
             st.setBoolean(1, isAttending);
             st.executeUpdate();
+            st.close();
         }
         
         student.setAttendance(getAllAttendance(student.getId()));

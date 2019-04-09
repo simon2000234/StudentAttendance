@@ -173,5 +173,10 @@ public class SAModel
         temp.addAll(AM.getAllStudents());
         students = temp;
     }
+    
+    public ArrayList<Person> getAllPersons() throws SQLException
+    {
+        return AM.getAllPersons();
+    }
 
 }
