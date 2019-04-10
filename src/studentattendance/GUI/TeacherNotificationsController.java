@@ -8,8 +8,6 @@ package studentattendance.GUI;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,8 +51,10 @@ public class TeacherNotificationsController implements Initializable
                 TeacherAlert alert = lstAlerts.getSelectionModel().getSelectedItem();
                 model.getOBSTeacherAlerts().remove(alert);
                 model.deleteTeacherAlert(alert.getId());
-                Attendance newRealAttendance = new Attendance(alert.getnAtendance().isIsAttending(), alert.getnAtendance().getDate(), alert.getnAtendance().getDayOfWeek(), true, -1);
-                model.createAttendance(newRealAttendance.isIsAttending(), newRealAttendance.getDate(), newRealAttendance.getDayOfWeek(), alert.getStudent().getId(), true);
+                Attendance newRealAttendance = new Attendance(alert.getnAtendance().isIsAttending(), 
+                        alert.getnAtendance().getDate(), alert.getnAtendance().getDayOfWeek(), true, -1);
+                model.createAttendance(newRealAttendance.isIsAttending(), newRealAttendance.getDate(),
+                        newRealAttendance.getDayOfWeek(), alert.getStudent().getId(), true);
                 model.deleteAttendance(alert.getoAttendance().getId());
                 model.deleteAttendance(alert.getnAtendance().getId());
                 lblConfirmation.setText(alert.getStudent().getName()

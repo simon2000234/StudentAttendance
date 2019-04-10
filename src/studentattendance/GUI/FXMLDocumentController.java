@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 import studentattendance.BE.Person;
 import studentattendance.BE.Student;
 import studentattendance.BE.Teacher;
-import studentattendance.BLL.AManager;
 import studentattendance.StudentAttendance;
 
 /**

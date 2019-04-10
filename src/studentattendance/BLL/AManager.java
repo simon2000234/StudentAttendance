@@ -12,9 +12,6 @@ import studentattendance.BE.Person;
 import studentattendance.BE.Student;
 import studentattendance.BE.TeacherAlert;
 import studentattendance.DAL.DataAccessFacade;
-import studentattendance.DAL.PersonDAO;
-import studentattendance.DAL.StudentDAO;
-import studentattendance.DAL.TeacherDAO;
 
 /**
  *

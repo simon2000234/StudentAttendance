@@ -5,9 +5,6 @@
  */
 package studentattendance.BE;
 
-import java.time.LocalDate;
-import java.util.Comparator;
-
 /**
  *
  * @author Melchertsen

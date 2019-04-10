@@ -9,8 +9,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,7 +60,8 @@ public class EditAttendanceController implements Initializable
 
                 }
             }
-            Attendance newAttendance = model.createAttendance(true, list.get(editPos).getDate(), list.get(editPos).getDayOfWeek(), student.getId(), false);
+            Attendance newAttendance = model.createAttendance(true, list.get(editPos).getDate(), 
+                    list.get(editPos).getDayOfWeek(), student.getId(), false);
             Attendance oldAttendance = list.get(editPos);
             if (newAttendance.isIsAttending() == oldAttendance.isIsAttending())
             {
